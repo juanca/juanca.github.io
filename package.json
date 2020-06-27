@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/juanca/juanca.github.io/issues"
   },
-  "homepage": "https://github.com/juanca/juanca.github.io#readme"
+  "homepage": "https://github.com/juanca/juanca.github.io#readme",
+  "engines": {
+    "node": "12"
+  }
 }
