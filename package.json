@@ -1,0 +1,22 @@
+{
+  "name": "juanca.github.io",
+  "version": "0.0.0",
+  "description": "Homepage for juanca",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanca/juanca.github.io.git"
+  },
+  "keywords": [
+    "juanca"
+  ],
+  "author": "Juan Carlos Medina",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/juanca/juanca.github.io/issues"
+  },
+  "homepage": "https://github.com/juanca/juanca.github.io#readme"
+}
