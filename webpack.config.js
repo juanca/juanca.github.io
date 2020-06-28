@@ -34,7 +34,7 @@ module.exports = {
     ${mdSource}
   </body>
 </html>
-`
+        `;
       },
     }),
   ]
