@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDC Las Vegas 2025 - Day 2 Set Times</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #ff0099;
+            --secondary-color: #6600ff;
+            --background-color: #0a0a0f;
+            --surface-color: #16161f;
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --grid-color: rgba(255, 255, 255, 0.1);
+            --time-width: 100px;
+            --accent-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --glass-effect: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-transform: scale(1.02) translateY(-2px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(102, 0, 255, 0.15) 0%, transparent 50%);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--surface-color);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .control-btn {
+            background: var(--glass-effect);
+            border: none;
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .control-btn i {
+            font-size: 1.1em;
+        }
+
+        .schedule-wrapper {
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 20px;
+            border-radius: 16px;
+            background: var(--surface-color);
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .schedule-scroll {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 300px);
+        }
+
+        .schedule-container {
+            display: grid;
+            grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
+            min-width: 1200px;
+            gap: 1px;
+            background: var(--grid-color);
+            padding: 1px;
+            padding-top: 0;
+        }
+
+        .header-row {
+            display: grid;
+            grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
+            min-width: 1200px;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: var(--surface-color);
+            border-bottom: 1px solid var(--grid-color);
+            margin-bottom: 1px;
+        }
+
+        .stage-header {
+            background: var(--surface-color);
+            padding: 20px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .stage-header i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .time-column {
+            position: sticky;
+            left: 0;
+            background: var(--surface-color);
+            z-index: 2;
+            padding-right: 10px;
+        }
+
+        .time-slot {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--grid-color);
+            position: relative;
+            padding: 0 15px;
+            background: var(--surface-color);
+        }
+
+        .time-slot::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 4px;
+            height: 1px;
+            background: var(--grid-color);
+        }
+
+        .stage-column {
+            display: grid;
+            grid-template-rows: auto repeat(23, 60px);
+            background: var(--surface-color);
+        }
+
+        .set {
+            background: var(--glass-effect);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .set:hover {
+            transform: var(--hover-transform);
+            background: rgba(255, 255, 255, 0.08);
+            z-index: 3;
+            box-shadow: var(--card-shadow);
+        }
+
+        .set::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-gradient);
+            border-radius: 3px 0 0 3px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .set:hover::before {
+            opacity: 1;
+        }
+
+        .artist {
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+
+        .time {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .time i {
+            font-size: 0.9em;
+        }
+
+        .current-time-indicator {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-color);
+            z-index: 4;
+            pointer-events: none;
+            transition: top 0.3s ease;
+        }
+
+        .current-time-indicator::before {
+            content: '';
+            position: absolute;
+            left: var(--time-width);
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .current-time-label {
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        .current-time-indicator::after {
+            content: '';
+            position: absolute;
+            left: var(--time-width);
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--primary-color) 0%,
+                rgba(255, 0, 153, 0.3) 10%,
+                rgba(255, 0, 153, 0.1) 100%);
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .schedule-scroll {
+                max-height: calc(100vh - 400px);
+            }
+            .schedule-container {
+                min-width: 100%;
+                grid-template-columns: var(--time-width) 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        /* Custom scrollbar */
+        .schedule-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-track {
+            background: var(--surface-color);
+            border-radius: 4px;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-thumb {
+            background: var(--glass-effect);
+            border-radius: 4px;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EDC Las Vegas 2025</h1>
+        <h2>Saturday, May 17 Set Times</h2>
+    </header>
+
+    <div class="schedule-wrapper">
+        <div class="header-row">
+            <div class="stage-header">
+                <i class="fas fa-clock"></i>
+                Time
+            </div>
+            <div class="stage-header">
+                <i class="fas fa-star"></i>
+                Kinetic Field
+            </div>
+            <div class="stage-header">
+                <i class="fas fa-moon"></i>
+                Cosmic Meadow
+            </div>
+            <div class="stage-header">
+                <i class="fas fa-bolt"></i>
+                Circuit Grounds
+            </div>
+            <div class="stage-header">
+                <i class="fas fa-fire"></i>
+                Neon Garden
+            </div>
+            <div class="stage-header">
+                <i class="fas fa-drum"></i>
+                Basspod
+            </div>
+        </div>
+
+        <div class="schedule-scroll">
+            <div class="current-time-indicator">
+                <div class="current-time-label">
+                    <i class="fas fa-clock"></i>
+                    <span class="current-time-text">11:30 PM</span>
+                </div>
+            </div>
+
+            <div class="schedule-container">
+                <!-- Time Column -->
+                <div class="time-column">
+                    <div class="time-slot">7:00 PM</div>
+                    <div class="time-slot">7:30 PM</div>
+                    <div class="time-slot">8:00 PM</div>
+                    <div class="time-slot">8:30 PM</div>
+                    <div class="time-slot">9:00 PM</div>
+                    <div class="time-slot">9:30 PM</div>
+                    <div class="time-slot">10:00 PM</div>
+                    <div class="time-slot">10:30 PM</div>
+                    <div class="time-slot">11:00 PM</div>
+                    <div class="time-slot">11:30 PM</div>
+                    <div class="time-slot">12:00 AM</div>
+                    <div class="time-slot">12:30 AM</div>
+                    <div class="time-slot">1:00 AM</div>
+                    <div class="time-slot">1:30 AM</div>
+                    <div class="time-slot">2:00 AM</div>
+                    <div class="time-slot">2:30 AM</div>
+                    <div class="time-slot">3:00 AM</div>
+                    <div class="time-slot">3:30 AM</div>
+                    <div class="time-slot">4:00 AM</div>
+                    <div class="time-slot">4:30 AM</div>
+                    <div class="time-slot">5:00 AM</div>
+                    <div class="time-slot">5:30 AM</div>
+                </div>
+
+                <!-- Kinetic Field -->
+                <div class="stage-column">
+                    <div class="set" style="grid-row: 1 / 3;">
+                        <div class="artist">Xandra</div>
+                        <div class="time">
+                            <i class="far fa-clock"></i>
+                            7:00 PM - 8:00 PM
+                        </div>
+                    </div>
+                    <div class="set" style="grid-row: 3 / 5;">
+                        <div class="artist">Dimension</div>
+                        <div class="time">8:00 PM - 9:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 5 / 7;">
+                        <div class="artist">Ben Nicky</div>
+                        <div class="time">9:00 PM - 10:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 7 / 9;">
+                        <div class="artist">Afrojack</div>
+                        <div class="time">10:06 PM - 11:15 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 9 / 11;">
+                        <div class="artist">Eric Prydz</div>
+                        <div class="time">11:18 PM - 12:28 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 11 / 13;">
+                        <div class="artist">Fisher</div>
+                        <div class="time">12:31 AM - 1:41 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 13 / 15;">
+                        <div class="artist">Illenium B2B SLANDER</div>
+                        <div class="time">1:47 AM - 2:57 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 15 / 17;">
+                        <div class="artist">Kaskade</div>
+                        <div class="time">3:00 AM - 4:10 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 17 / 19;">
+                        <div class="artist">Meduza</div>
+                        <div class="time">4:13 AM - 5:28 AM</div>
+                    </div>
+                </div>
+
+                <!-- Cosmic Meadow -->
+                <div class="stage-column">
+                    <div class="set" style="grid-row: 1 / 3;">
+                        <div class="artist">Villager</div>
+                        <div class="time">7:00 PM - 8:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 3 / 5;">
+                        <div class="artist">Oppidan</div>
+                        <div class="time">8:00 PM - 9:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 5 / 8;">
+                        <div class="artist">Bicep present Chroma</div>
+                        <div class="time">9:10 PM - 10:40 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 8 / 11;">
+                        <div class="artist">Brutalismus 3000</div>
+                        <div class="time">10:50 PM - 12:00 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 11 / 12;">
+                        <div class="artist">DJ Snake (Hip Hop Set)</div>
+                        <div class="time">12:01 AM - 12:46 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 12 / 14;">
+                        <div class="artist">Gesaffelstein</div>
+                        <div class="time">12:48 AM - 1:59 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 14 / 16;">
+                        <div class="artist">Boys Noize</div>
+                        <div class="time">2:30 AM - 3:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 16 / 18;">
+                        <div class="artist">Odd Mob</div>
+                        <div class="time">3:30 AM - 4:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 18 / 20;">
+                        <div class="artist">Hedex</div>
+                        <div class="time">4:30 AM - 5:30 AM</div>
+                    </div>
+                </div>
+
+                <!-- Circuit Grounds -->
+                <div class="stage-column">
+                    <div class="set" style="grid-row: 1 / 3;">
+                        <div class="artist">Torren Foot</div>
+                        <div class="time">7:00 PM - 8:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 3 / 5;">
+                        <div class="artist">LF SYSTEM</div>
+                        <div class="time">8:00 PM - 9:15 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 5 / 7;">
+                        <div class="artist">HUGEL</div>
+                        <div class="time">9:15 PM - 10:30 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 7 / 10;">
+                        <div class="artist">Mau P</div>
+                        <div class="time">10:30 PM - 12:00 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 10 / 12;">
+                        <div class="artist">Rezz</div>
+                        <div class="time">12:05 AM - 1:15 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 12 / 14;">
+                        <div class="artist">ISOKNOCK</div>
+                        <div class="time">1:27 AM - 2:27 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 14 / 16;">
+                        <div class="artist">Charlotte de Witte</div>
+                        <div class="time">2:30 AM - 3:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 16 / 18;">
+                        <div class="artist">Tchami x Malaa (No Redemption)</div>
+                        <div class="time">3:30 AM - 4:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 18 / 20;">
+                        <div class="artist">Space 92 x Popof present: Turbulences</div>
+                        <div class="time">4:30 AM - 5:30 AM</div>
+                    </div>
+                </div>
+
+                <!-- Neon Garden -->
+                <div class="stage-column">
+                    <div class="set" style="grid-row: 1 / 4;">
+                        <div class="artist">Cole Knight</div>
+                        <div class="time">7:00 PM - 8:45 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 4 / 7;">
+                        <div class="artist">Sosa</div>
+                        <div class="time">8:45 PM - 10:00 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 7 / 9;">
+                        <div class="artist">Beltran</div>
+                        <div class="time">10:00 PM - 11:15 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 9 / 11;">
+                        <div class="artist">Carlita</div>
+                        <div class="time">11:15 PM - 12:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 11 / 16;">
+                        <div class="artist">The Martinez Brothers B2B Loco Dice</div>
+                        <div class="time">12:30 AM - 3:00 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 16 / 18;">
+                        <div class="artist">Dennis Cruz</div>
+                        <div class="time">3:00 AM - 4:15 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 18 / 20;">
+                        <div class="artist">Vintage Culture</div>
+                        <div class="time">4:15 AM - 5:30 AM</div>
+                    </div>
+                </div>
+
+                <!-- Basspod -->
+                <div class="stage-column">
+                    <div class="set" style="grid-row: 1 / 2;">
+                        <div class="artist">Fury with MC Dino</div>
+                        <div class="time">7:00 PM - 7:50 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 2 / 4;">
+                        <div class="artist">RZRKT B2B Vastive</div>
+                        <div class="time">7:50 PM - 8:40 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 4 / 5;">
+                        <div class="artist">Samplifire</div>
+                        <div class="time">8:40 PM - 9:30 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 5 / 7;">
+                        <div class="artist">INFEKT</div>
+                        <div class="time">9:30 PM - 10:30 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 7 / 9;">
+                        <div class="artist">Jessica Audiffred B2B LAYZ</div>
+                        <div class="time">10:30 PM - 11:30 PM</div>
+                    </div>
+                    <div class="set" style="grid-row: 9 / 11;">
+                        <div class="artist">Ray Volpe</div>
+                        <div class="time">11:30 PM - 12:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 11 / 13;">
+                        <div class="artist">Chase & Status</div>
+                        <div class="time">12:30 AM - 1:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 13 / 15;">
+                        <div class="artist">Svdden Death</div>
+                        <div class="time">1:30 AM - 2:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 15 / 17;">
+                        <div class="artist">Netsky</div>
+                        <div class="time">2:30 AM - 3:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 17 / 19;">
+                        <div class="artist">Level Up</div>
+                        <div class="time">3:30 AM - 4:30 AM</div>
+                    </div>
+                    <div class="set" style="grid-row: 19 / 21;">
+                        <div class="artist">Shades</div>
+                        <div class="time">4:30 AM - 5:30 AM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatTime(date) {
+            let hours = date.getHours();
+            const minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Convert 0 to 12
+            const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+            return `${hours}:${minutesStr} ${ampm}`;
+        }
+
+        function updateTimeIndicator() {
+            const now = new Date();
+            const startTime = new Date(now);
+            startTime.setHours(19, 0, 0); // 7:00 PM
+            
+            const timeDiff = now - startTime;
+            const minutesSinceStart = timeDiff / (1000 * 60);
+            const position = (minutesSinceStart / 30) * 60; // 30 minutes per slot, 60px height
+
+            const indicator = document.querySelector('.current-time-indicator');
+            const timeText = document.querySelector('.current-time-text');
+            
+            // Update position and time text
+            indicator.style.top = `${position + 60}px`; // Add header height
+            timeText.textContent = formatTime(now);
+
+            // Add active class if current time is within schedule range
+            const isWithinSchedule = minutesSinceStart >= 0 && minutesSinceStart <= (22.5 * 60); // 7PM to 5:30AM
+            indicator.style.opacity = isWithinSchedule ? '1' : '0.3';
+        }
+
+        // Update every 30 seconds
+        setInterval(updateTimeIndicator, 30000);
+        updateTimeIndicator();
+
+        // Add smooth scroll to current time
+        document.querySelector('.control-btn[data-action="now"]')?.addEventListener('click', () => {
+            const indicator = document.querySelector('.current-time-indicator');
+            indicator.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+</html> 
