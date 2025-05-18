@@ -145,19 +145,18 @@
             gap: 1px;
             background: var(--grid-color);
             padding: 1px;
-            padding-top: 0;
         }
 
-        .header-row {
-            display: grid;
-            grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
-            min-width: 1200px;
+        .header-container {
             position: sticky;
             top: 0;
             z-index: 5;
             background: var(--surface-color);
             border-bottom: 1px solid var(--grid-color);
             margin-bottom: 1px;
+            display: grid;
+            grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
+            min-width: 1200px;
         }
 
         .stage-header {
@@ -170,6 +169,7 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            border-bottom: 2px solid transparent;
         }
 
         .stage-header::after {
@@ -194,6 +194,16 @@
             background: var(--surface-color);
             z-index: 2;
             padding-right: 10px;
+            border-right: 1px solid var(--grid-color);
+        }
+
+        /* Make the time header sticky both top and left */
+        .header-container .stage-header:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 6;
+            background: var(--surface-color);
+            border-right: 1px solid var(--grid-color);
         }
 
         .time-slot {
@@ -209,14 +219,17 @@
             background: var(--surface-color);
         }
 
-        .time-slot::after {
+        /* Add shadow effect for sticky elements */
+        .time-column::after,
+        .header-container .stage-header:first-child::after {
             content: '';
             position: absolute;
-            right: 0;
-            top: 50%;
-            width: 4px;
-            height: 1px;
-            background: var(--grid-color);
+            top: 0;
+            right: -5px;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
+            pointer-events: none;
         }
 
         .stage-column {
@@ -342,25 +355,177 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             .schedule-scroll {
-                max-height: calc(100vh - 400px);
-            }
-            .schedule-container {
-                min-width: 100%;
-                grid-template-columns: var(--time-width) 1fr;
+                max-height: calc(100vh - 200px);
             }
 
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
+            .schedule-container,
+            .header-container {
+                min-width: auto;
+                width: max-content;
+                grid-template-columns: var(--time-width) repeat(5, minmax(180px, 1fr));
             }
 
+            .stage-column {
+                min-width: 180px;
+            }
+
+            .time-column {
+                padding-right: 5px;
+            }
+
+            .time-slot {
+                padding: 0 8px;
+            }
+
+            .set {
+                padding: 8px;
+            }
+
+            .artist {
+                font-size: 0.9em;
+            }
+
+            .time {
+                font-size: 0.75em;
+            }
+
+            /* Make header more compact on mobile */
             header {
-                padding: 20px;
+                padding: 6px;
+                margin-bottom: 8px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 1.2em;
+                margin-bottom: 0;
+            }
+
+            h2 {
+                font-size: 0.9em;
+            }
+
+            .stage-header {
+                padding: 6px 4px;
+                font-size: 0.8em;
+            }
+
+            .stage-header i {
+                font-size: 0.85em;
+                margin-right: 2px;
+            }
+
+            /* Add horizontal scroll indicators */
+            .schedule-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 30px;
+                background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3));
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            .schedule-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 30px;
+                background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.3));
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            /* Adjust shadow for mobile */
+            .time-column::after,
+            .header-container .stage-header:first-child::after {
+                right: -3px;
+                width: 3px;
+            }
+        }
+
+        /* Additional breakpoint for very small screens */
+        @media (max-width: 480px) {
+            .schedule-container,
+            .header-container {
+                grid-template-columns: var(--time-width) repeat(5, minmax(160px, 1fr));
+            }
+
+            .stage-column {
+                min-width: 160px;
+            }
+
+            .time-column {
+                min-width: 60px;
+                font-size: 0.8em;
+            }
+
+            .set {
+                padding: 6px;
+            }
+
+            .artist {
+                font-size: 0.85em;
+            }
+
+            .time {
+                font-size: 0.7em;
+            }
+
+            /* Hide some time slots to save space */
+            .time-slot:nth-child(odd) {
+                color: transparent;
+                font-size: 0;
+            }
+
+            .time-slot:nth-child(odd)::after {
+                content: '·';
+                font-size: 16px;
+                color: var(--text-secondary);
+            }
+
+            /* Add touch scrolling hint */
+            .schedule-wrapper::after {
+                content: '👈 Scroll 👉';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 0.9em;
+                pointer-events: none;
+                animation: fadeOut 2s forwards;
+                z-index: 100;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Add smooth scrolling for touch devices */
+        @media (hover: none) {
+            .schedule-scroll {
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+            }
+
+            .stage-column {
+                scroll-snap-align: start;
             }
         }
 
@@ -462,33 +627,34 @@
     </header>
 
     <div class="schedule-wrapper">
-        <div class="header-row">
-            <div class="stage-header">
-                <i class="fas fa-clock"></i>
-            </div>
-            <div class="stage-header">
-                <i class="fas fa-star"></i>
-                Kinetic Field
-            </div>
-            <div class="stage-header">
-                <i class="fas fa-moon"></i>
-                Cosmic Meadow
-            </div>
-            <div class="stage-header">
-                <i class="fas fa-bolt"></i>
-                Circuit Grounds
-            </div>
-            <div class="stage-header">
-                <i class="fas fa-fire"></i>
-                Neon Garden
-            </div>
-            <div class="stage-header">
-                <i class="fas fa-drum"></i>
-                Basspod
-            </div>
-        </div>
-
         <div class="schedule-scroll">
+            <div class="header-container">
+                <div class="stage-header">
+                    <i class="fas fa-clock"></i>
+                    Time
+                </div>
+                <div class="stage-header">
+                    <i class="fas fa-star"></i>
+                    Kinetic Field
+                </div>
+                <div class="stage-header">
+                    <i class="fas fa-moon"></i>
+                    Cosmic Meadow
+                </div>
+                <div class="stage-header">
+                    <i class="fas fa-bolt"></i>
+                    Circuit Grounds
+                </div>
+                <div class="stage-header">
+                    <i class="fas fa-fire"></i>
+                    Neon Garden
+                </div>
+                <div class="stage-header">
+                    <i class="fas fa-drum"></i>
+                    Basspod
+                </div>
+            </div>
+
             <div class="current-time-indicator">
                 <div class="current-time-label">
                     <i class="fas fa-clock"></i>
