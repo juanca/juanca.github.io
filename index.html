@@ -21,6 +21,18 @@
             --glass-effect: rgba(255, 255, 255, 0.05);
             --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --hover-transform: scale(1.02) translateY(-2px);
+            
+            /* Stage-specific colors */
+            --kinetic-color: rgba(255, 82, 182, 0.1);
+            --kinetic-hover: rgba(255, 82, 182, 0.15);
+            --cosmic-color: rgba(111, 66, 193, 0.1);
+            --cosmic-hover: rgba(111, 66, 193, 0.15);
+            --circuit-color: rgba(64, 156, 255, 0.1);
+            --circuit-hover: rgba(64, 156, 255, 0.15);
+            --neon-color: rgba(0, 255, 179, 0.1);
+            --neon-hover: rgba(0, 255, 179, 0.15);
+            --basspod-color: rgba(255, 111, 0, 0.1);
+            --basspod-hover: rgba(255, 111, 0, 0.15);
         }
 
         * {
@@ -207,7 +219,7 @@
             border-radius: 8px;
             padding: 12px;
             margin: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, border-left 0.3s ease;
             position: relative;
             cursor: pointer;
             display: flex;
@@ -223,20 +235,7 @@
         }
 
         .set::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--accent-gradient);
-            border-radius: 3px 0 0 3px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .set:hover::before {
-            opacity: 1;
+            display: none;
         }
 
         .artist {
@@ -371,6 +370,77 @@
 
         .schedule-wrapper::-webkit-scrollbar-thumb:hover {
             background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stage-column:nth-child(2) .set {
+            background: var(--kinetic-color);
+            border-left: 3px solid rgba(255, 82, 182, 0.3);
+        }
+
+        .stage-column:nth-child(2) .set:hover {
+            background: var(--kinetic-hover);
+            border-left: 3px solid rgba(255, 82, 182, 0.6);
+        }
+
+        .stage-column:nth-child(3) .set {
+            background: var(--cosmic-color);
+            border-left: 3px solid rgba(111, 66, 193, 0.3);
+        }
+
+        .stage-column:nth-child(3) .set:hover {
+            background: var(--cosmic-hover);
+            border-left: 3px solid rgba(111, 66, 193, 0.6);
+        }
+
+        .stage-column:nth-child(4) .set {
+            background: var(--circuit-color);
+            border-left: 3px solid rgba(64, 156, 255, 0.3);
+        }
+
+        .stage-column:nth-child(4) .set:hover {
+            background: var(--circuit-hover);
+            border-left: 3px solid rgba(64, 156, 255, 0.6);
+        }
+
+        .stage-column:nth-child(5) .set {
+            background: var(--neon-color);
+            border-left: 3px solid rgba(0, 255, 179, 0.3);
+        }
+
+        .stage-column:nth-child(5) .set:hover {
+            background: var(--neon-hover);
+            border-left: 3px solid rgba(0, 255, 179, 0.6);
+        }
+
+        .stage-column:nth-child(6) .set {
+            background: var(--basspod-color);
+            border-left: 3px solid rgba(255, 111, 0, 0.3);
+        }
+
+        .stage-column:nth-child(6) .set:hover {
+            background: var(--basspod-hover);
+            border-left: 3px solid rgba(255, 111, 0, 0.6);
+        }
+
+        /* Update stage headers to match their columns */
+        .stage-header:nth-child(2) {
+            color: rgba(255, 82, 182, 1);
+        }
+
+        .stage-header:nth-child(3) {
+            color: rgba(111, 66, 193, 1);
+        }
+
+        .stage-header:nth-child(4) {
+            color: rgba(64, 156, 255, 1);
+        }
+
+        .stage-header:nth-child(5) {
+            color: rgba(0, 255, 179, 1);
+        }
+
+        .stage-header:nth-child(6) {
+            color: rgba(255, 111, 0, 1);
         }
     </style>
 </head>
