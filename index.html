@@ -129,6 +129,9 @@
             background: var(--surface-color);
             box-shadow: var(--card-shadow);
             position: relative;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .schedule-scroll {
@@ -137,6 +140,12 @@
             overflow-y: auto;
             max-height: calc(100vh - 300px);
             position: relative;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+            scroll-behavior: smooth;
+            will-change: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
         .schedule-container {
@@ -146,6 +155,9 @@
             gap: 1px;
             background: var(--grid-color);
             padding: 1px;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .header-container {
@@ -159,6 +171,10 @@
             grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
             min-width: 1200px;
             width: 100%;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .stage-header {
@@ -242,6 +258,9 @@
             background: var(--surface-color);
             position: relative;
             z-index: 1;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .set {
@@ -249,13 +268,17 @@
             border-radius: 8px;
             padding: 12px;
             margin: 2px;
-            transition: all 0.3s ease, border-left 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-left-color 0.3s ease;
             position: relative;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 2;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .set:hover {
@@ -648,6 +671,57 @@
                 background: var(--surface-color);
                 -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
+            }
+        }
+
+        /* Tablet-specific optimizations */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .schedule-scroll {
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x proximity;
+            }
+
+            .stage-column {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+
+            .set {
+                touch-action: pan-x pan-y;
+            }
+
+            /* Reduce shadow complexity for better performance */
+            .time-column::after,
+            .header-container .stage-header:first-child::after {
+                background: rgba(0, 0, 0, 0.1);
+                width: 2px;
+            }
+
+            /* Optimize sticky elements */
+            .time-column,
+            .header-container .stage-header:first-child {
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+                backface-visibility: hidden;
+            }
+        }
+
+        /* Prevent iOS double-tap zoom */
+        @media (hover: none) {
+            .set {
+                touch-action: manipulation;
+            }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            .schedule-scroll {
+                scroll-behavior: auto;
+            }
+            
+            .set {
+                transition: none;
             }
         }
     </style>
