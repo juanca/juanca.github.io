@@ -157,6 +157,7 @@
             display: grid;
             grid-template-columns: var(--time-width) repeat(5, minmax(200px, 1fr));
             min-width: 1200px;
+            width: 100%;
         }
 
         .stage-header {
@@ -234,7 +235,7 @@
 
         .stage-column {
             display: grid;
-            grid-template-rows: auto repeat(23, 60px);
+            grid-template-rows: repeat(22, 60px);
             background: var(--surface-color);
         }
 
@@ -355,6 +356,10 @@
         }
 
         @media (max-width: 768px) {
+            :root {
+                --time-width: 70px;
+            }
+
             body {
                 padding: 10px;
             }
@@ -367,11 +372,11 @@
             .header-container {
                 min-width: auto;
                 width: max-content;
-                grid-template-columns: var(--time-width) repeat(5, minmax(180px, 1fr));
+                grid-template-columns: var(--time-width) repeat(5, 180px);
             }
 
             .stage-column {
-                min-width: 180px;
+                width: 180px;
             }
 
             .time-column {
@@ -452,15 +457,18 @@
             }
         }
 
-        /* Additional breakpoint for very small screens */
         @media (max-width: 480px) {
+            :root {
+                --time-width: 60px;
+            }
+
             .schedule-container,
             .header-container {
-                grid-template-columns: var(--time-width) repeat(5, minmax(160px, 1fr));
+                grid-template-columns: var(--time-width) repeat(5, 160px);
             }
 
             .stage-column {
-                min-width: 160px;
+                width: 160px;
             }
 
             .time-column {
