@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjure — AI Agents at Your Command</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0a0a14;
+            --surface: #14142a;
+            --blue: #0ae;
+            --cyan: #0ef;
+            --purple: #60f;
+            --text: #eee;
+            --muted: rgba(255,255,255,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: radial-gradient(circle at center, rgba(0,170,238,0.4), rgba(96,0,255,0.2), transparent 70%),
+                        linear-gradient(135deg, #1a0a30, #0a0a14);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 0 40px rgba(0,170,238,0.2);
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            color: var(--muted);
+            font-size: 1em;
+        }
+
+        .section {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .section h2 {
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section p {
+            color: var(--muted);
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.7em;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .badge.available {
+            background: rgba(0,238,255,0.15);
+            color: var(--cyan);
+        }
+
+        .badge.soon {
+            background: rgba(255,170,0,0.15);
+            color: #fa0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,170,238,0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+            color: var(--muted);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .steps li {
+            counter-increment: step;
+            padding: 8px 0;
+            font-size: 0.85em;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            background: rgba(0,170,238,0.15);
+            color: var(--blue);
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .feature {
+            font-size: 0.8em;
+            color: var(--muted);
+            padding: 8px 0;
+        }
+
+        .feature span {
+            color: var(--cyan);
+            margin-right: 6px;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.75em;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .features { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="icon">✨</div>
+            <h1>Conjure</h1>
+            <p class="subtitle">AI agents at your command</p>
+        </div>
+
+        <div class="section">
+            <h2>☁️ Cloud Mode</h2>
+            <p>Talk to Claude directly from your Apple Vision Pro. Push-to-talk voice input, streaming responses, multi-agent windows. Just add your API key.</p>
+            <div class="features">
+                <div class="feature"><span>🎤</span> Push-to-talk voice</div>
+                <div class="feature"><span>⚡</span> Streaming responses</div>
+                <div class="feature"><span>📊</span> Token & cost tracking</div>
+                <div class="feature"><span>🪟</span> Multi-agent windows</div>
+            </div>
+            <a href="#" class="btn btn-secondary">App Store <span class="badge soon">Coming Soon</span></a>
+        </div>
+
+        <div class="section">
+            <h2>🖥️ Mac Mode</h2>
+            <p>Connect to your Mac for full Claude Code access — read files, write code, run commands, search your codebase. All hands-free from Vision Pro.</p>
+            <div class="features">
+                <div class="feature"><span>📁</span> File read/write/edit</div>
+                <div class="feature"><span>💻</span> Run shell commands</div>
+                <div class="feature"><span>🔒</span> PIN auth + TLS</div>
+                <div class="feature"><span>📡</span> Auto-discovery</div>
+            </div>
+            <a href="https://github.com/juanca/conjure/releases/latest" class="btn btn-primary">Download Conjure Bridge</a>
+            <p style="margin-top: 16px; font-size: 0.75em;">Requires a Mac running macOS 26+</p>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Mac Mode Setup</h2>
+            <ol class="steps">
+                <li>Download and install Conjure Bridge on your Mac</li>
+                <li>Launch it — a PIN appears in the menu bar</li>
+                <li>Click the menu bar icon → Share CA Certificate → AirDrop to Vision Pro</li>
+                <li>On Vision Pro: Settings → General → VPN & Device Management → Install</li>
+                <li>Settings → General → About → Certificate Trust Settings → Enable</li>
+                <li>Open Conjure on Vision Pro, switch to Mac mode, enter the PIN</li>
+            </ol>
+            <p style="margin-top: 12px; font-size: 0.75em;">Steps 3-5 are one-time only. After that, just enter the PIN each session.</p>
+        </div>
+
+        <div class="footer">
+            <p>Copyright &copy; 2026 Juan Carlos Medina. All rights reserved.</p>
+            <p style="margin-top: 8px;">
+                <a href="https://github.com/juanca/conjure/blob/main/PRIVACY.md">Privacy</a> ·
+                <a href="https://github.com/juanca/conjure/blob/main/TERMS.md">Terms</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
