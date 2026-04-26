@@ -337,6 +337,48 @@
 
         footer a:hover { opacity: 0.8; }
 
+        /* Bridge */
+        .bridge {
+            max-width: 960px;
+            margin: 80px auto;
+            padding: 0 24px;
+        }
+
+        .bridge-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .bridge-header h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        .bridge-header p {
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .bridge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .bridge-cta {
+            text-align: center;
+        }
+
+        .bridge-status {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+
         @media (max-width: 700px) {
             .hero { padding: 48px 16px 24px; }
             .hero h1 { font-size: 2em; }
@@ -345,6 +387,7 @@
             .screenshot-grid { grid-template-columns: 1fr; }
             .screenshot-grid .wide { grid-column: 1; }
             .modes-grid { grid-template-columns: 1fr; }
+            .bridge-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 8px; }
         }
     </style>
@@ -466,6 +509,55 @@
                     <li>Enter the PIN from the Bridge menu bar</li>
                 </ol>
             </div>
+        </div>
+    </div>
+
+    <!-- Conjure Bridge -->
+    <div class="bridge" id="bridge">
+        <div class="bridge-header">
+            <span class="hero-badge" style="background: rgba(167, 119, 227, 0.12); color: var(--accent-2); border-color: rgba(167, 119, 227, 0.25);">Coming to the Mac App Store</span>
+            <h2>Conjure Bridge</h2>
+            <p>A native macOS companion app that turns your Mac into a secure Claude Code server for Vision Pro.</p>
+        </div>
+
+        <div class="bridge-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <h3>Secure by default</h3>
+                <p>TLS encryption, single-use PIN pairing, and brute-force lockout. Everything is encrypted in transit between your devices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9729;&#65039;</div>
+                <h3>iCloud auto-pair</h3>
+                <p>Devices on the same Apple ID pair automatically via iCloud Keychain. No PIN entry or certificate setup needed.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128269;</div>
+                <h3>Auto-discovery</h3>
+                <p>Vision Pro finds Bridge automatically on your local network via Bonjour. No IP addresses to remember.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9000;&#65039;</div>
+                <h3>Menu bar app</h3>
+                <p>Runs quietly in the menu bar. See connection status, copy the pairing PIN, and share certificates with one click.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128257;</div>
+                <h3>Session resume</h3>
+                <p>Reconnect without losing context. Token-based sessions survive network drops and app restarts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9889;</div>
+                <h3>Real-time streaming</h3>
+                <p>Watch tool calls, file reads, and code generation stream to your Vision Pro as they happen on your Mac.</p>
+            </div>
+        </div>
+
+        <div class="bridge-cta">
+            <p class="bridge-status">Conjure Bridge is pending App Store review. In the meantime, download the current release:</p>
+            <a href="https://github.com/juanca/conjure/releases/download/bridge-v1.0.0/Conjure.Bridge-1.0.0-arm64.dmg" class="btn btn-primary">
+                Download Conjure Bridge v1.0.0
+            </a>
         </div>
     </div>
 
