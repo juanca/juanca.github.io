@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curbwise — Never miss street cleaning again</title>
+    <link rel="canonical" href="https://juanca.github.io/curbwise/">
+    <meta name="description" content="Curbwise saves where you parked in San Francisco, looks up the sweeping schedule, and reminds you before the sweeper comes. iPhone, CarPlay, and Siri.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://juanca.github.io/curbwise/">
+    <meta property="og:title" content="Curbwise — Never miss street cleaning again">
+    <meta property="og:description" content="Saves where you parked, looks up the sweeping schedule, and reminds you before the sweeper comes. For San Francisco drivers.">
+    <meta property="og:image" content="https://juanca.github.io/curbwise/icon.png">
+
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --surface: #16161f;
+            --surface-hover: #1e1e2a;
+            --text: #f0f0f5;
+            --text-secondary: rgba(240, 240, 245, 0.6);
+            --text-tertiary: rgba(240, 240, 245, 0.4);
+            --accent: #2980f3;
+            --accent-2: #0a56d9;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { opacity: 0.8; }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .nav {
+            margin-bottom: 80px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        @media (min-width: 720px) {
+            .hero {
+                grid-template-columns: 96px 1fr;
+                gap: 32px;
+            }
+        }
+
+        .hero-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px rgba(41, 128, 243, 0.35);
+        }
+
+        .hero-text h1 {
+            font-size: 2.6em;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        @media (min-width: 720px) {
+            .hero-text h1 { font-size: 3.4em; }
+        }
+
+        .hero-text p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 560px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.8em;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: rgba(41, 128, 243, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(41, 128, 243, 0.3);
+        }
+
+        .section-title {
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        section { margin-bottom: 80px; }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 720px) {
+            .features { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .feature {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .feature h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 720px) {
+            .steps { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .step {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 100px;
+            background: rgba(41, 128, 243, 0.15);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+
+        .step h3 {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .scope {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .scope strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 16px; }
+            section { margin-bottom: 56px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="../">← juanca.github.io</a>
+        </nav>
+
+        <header class="hero">
+            <img src="icon.png" alt="Curbwise app icon" class="hero-icon">
+            <div class="hero-text">
+                <h1>Never miss street cleaning again.</h1>
+                <p>Curbwise saves where you parked, finds the sweeping schedule for that block, and reminds you before the sweeper comes — so the only thing on your windshield is your wipers.</p>
+                <span class="badge">Coming soon · iPhone · CarPlay · Siri</span>
+            </div>
+        </header>
+
+        <section>
+            <p class="section-title">What it does</p>
+            <div class="features">
+                <div class="feature">
+                    <h3>One tap to save</h3>
+                    <p>Tap the button when you park. Curbwise grabs your location and looks up the block from San Francisco's open data.</p>
+                </div>
+                <div class="feature">
+                    <h3>Smart reminders</h3>
+                    <p>Gets a notification fifteen minutes before the next sweep so you have time to move the car — or coffee, or whatever.</p>
+                </div>
+                <div class="feature">
+                    <h3>Pick your block</h3>
+                    <p>GPS isn't always perfect, especially between buildings. The picker shows nearby candidates with their schedule so you confirm the right curb.</p>
+                </div>
+                <div class="feature">
+                    <h3>Built for the car</h3>
+                    <p>Full CarPlay support. Save before you leave the seat, or auto-save the moment you unplug.</p>
+                </div>
+                <div class="feature">
+                    <h3>Hey Siri, I parked</h3>
+                    <p>Hands-free voice trigger captures your spot and tells you when the sweeper's coming.</p>
+                </div>
+                <div class="feature">
+                    <h3>Works offline</h3>
+                    <p>The whole city's sweeping schedule is cached on your phone. No data signal, no problem.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <p class="section-title">How it works</p>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <h3>Park</h3>
+                    <p>Tap save in the app, in CarPlay, or ask Siri.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <h3>Confirm the block</h3>
+                    <p>Curbwise shows nearby curbs with their sweeping schedule. Tap yours.</p>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <h3>Get reminded</h3>
+                    <p>A notification arrives before the next sweep. Move the car. Done.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <p class="section-title">Heads up</p>
+            <div class="scope">
+                Curbwise is <strong>San Francisco only</strong> for the first release, and covers <strong>street sweeping plus posted time limits</strong>. Color curbs (red, yellow, white, green, blue) and metered parking aren't covered yet — both are on the roadmap. Built on the city's <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">DataSF</a> open feeds.
+            </div>
+        </section>
+
+        <footer>
+            <span>&copy; 2026 Juan Carlos Medina</span>
+            <span><a href="https://github.com/juanca/curbwise">Source on GitHub</a></span>
+        </footer>
+    </div>
+</body>
+</html>
