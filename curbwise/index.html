@@ -217,9 +217,65 @@
             gap: 12px;
         }
 
+        .screenshots-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 4px 0 20px;
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .screenshots-scroll::-webkit-scrollbar { height: 8px; }
+        .screenshots-scroll::-webkit-scrollbar-track { background: transparent; }
+        .screenshots-scroll::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .shot {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shot img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            display: block;
+        }
+
+        .shot-caption {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 720px) {
+            .shot { width: 260px; }
+        }
+
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
             section { margin-bottom: 56px; }
+            .screenshots-scroll {
+                margin: 0 -16px;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
         }
     </style>
 </head>
@@ -237,6 +293,32 @@
                 <span class="badge">Coming soon · iPhone · CarPlay · Siri</span>
             </div>
         </header>
+
+        <section>
+            <p class="section-title">A look inside</p>
+            <div class="screenshots-scroll">
+                <div class="shot">
+                    <img src="screenshots/05_imminent_sweep.png" alt="Saved-spot card showing imminent sweep warning, time-limit countdown, and walk-back distance over a map of the parked block.">
+                    <span class="shot-caption">Saved spot — sweep + time-limit countdowns and walk-back distance.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/02_picker.png" alt="Block picker sheet listing nearby candidate blockfaces with their sweeping schedules.">
+                    <span class="shot-caption">Confirm the block — GPS isn't perfect, so you pick.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/08_widget_medium.png" alt="Home Screen widget showing Next Sweep countdown alongside a small map of the parked block.">
+                    <span class="shot-caption">Home Screen widget with the next-sweep countdown and a map.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/10_timelimit_actions.png" alt="Expanded notification banner with Snooze 1 hour and I moved my car action buttons.">
+                    <span class="shot-caption">Time-limit warning — snooze if you're skirting it.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/00_onboarding.png" alt="First-launch onboarding sheet listing what curbwise covers and what it doesn't.">
+                    <span class="shot-caption">Honest onboarding — what we cover, what we don't.</span>
+                </div>
+            </div>
+        </section>
 
         <section>
             <p class="section-title">What it does</p>
