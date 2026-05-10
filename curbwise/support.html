@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curbwise — Support</title>
+    <link rel="canonical" href="https://juanca.github.io/curbwise/support">
+    <meta name="description" content="Curbwise support — common questions, feature explanations, and how to get in touch.">
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --surface: #16161f;
+            --text: #f0f0f5;
+            --text-secondary: rgba(240, 240, 245, 0.6);
+            --text-tertiary: rgba(240, 240, 245, 0.4);
+            --accent: #2980f3;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { opacity: 0.8; }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .nav {
+            margin-bottom: 60px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .lede {
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-size: 1.05em;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li { margin-bottom: 8px; }
+
+        strong { color: var(--text); font-weight: 600; }
+
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+
+        .contact-card p:last-child { margin-bottom: 0; }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="./">← curbwise</a>
+        </nav>
+
+        <h1>Support</h1>
+        <p class="lede">Quick answers to the things people most commonly ask. If your question isn't here, email me — I read everything.</p>
+
+        <h2>Get in touch</h2>
+        <div class="contact-card">
+            <p>Email: <a href="mailto:juanca.med@gmail.com?subject=Curbwise%20support">juanca.med@gmail.com</a></p>
+            <p>Include the iOS version and the rough block where the problem happened — that's enough to reproduce most issues.</p>
+        </div>
+
+        <h2>Why didn't I get a notification?</h2>
+        <ul>
+            <li>Check Settings → Notifications → curbwise. Notifications need to be allowed; if you tapped "Don't Allow" on the first prompt, the warning notifications won't fire.</li>
+            <li>Curbwise schedules notifications 15 minutes before the next sweep. If you saved your spot less than 15 minutes before sweeping starts, the notification fires immediately.</li>
+            <li>If you tapped "I moved my car" on a previous notification, the next one is canceled until you save again.</li>
+        </ul>
+
+        <h2>The block picker doesn't show my street</h2>
+        <p>Curbwise looks for blockfaces within 150 meters of where your phone reports you. On urban canyons (downtown, between tall buildings) GPS can drift more than that. Walk to the curb and try again, or save the closest match — the sweep schedule on neighboring blocks is usually similar enough.</p>
+
+        <h2>The schedule on the sign is different from what curbwise shows</h2>
+        <p>Curbwise reads from San Francisco's public DataSF feed, which reflects the rule but isn't always the very latest update. <strong>The sign on the curb wins.</strong> If you spot a mismatch, email me with the block name and what the sign says — that helps build the freshness signal.</p>
+
+        <h2>What about red curbs, meters, or RPP zones?</h2>
+        <p>Curbwise covers street sweeping and posted hourly time limits in v1. It does not cover painted curbs (red, yellow, white, green, blue), metered parking hours, residential permit zone enforcement, garages, or temporary signage.</p>
+        <p>Always glance at the curb and read the sign — Curbwise is a heads-up, not a guarantee. If a tow truck shows up, the sign wins.</p>
+
+        <h2>Does this work outside San Francisco?</h2>
+        <p>Not yet. The data feeds are SF-specific. Other cities are on the roadmap once we figure out the equivalent open data sources.</p>
+
+        <h2>What about CarPlay?</h2>
+        <p>CarPlay support is built and waiting on Apple's CarPlay Parking entitlement to be granted. Once it lands, the app will appear in your CarPlay screen with "Save my spot" and "Where did I park" actions.</p>
+
+        <h2>Privacy</h2>
+        <p>See the <a href="privacy">privacy policy</a> for the full breakdown. Short version: location stays on your phone, no accounts, no analytics, no ads.</p>
+
+        <footer>
+            <span>&copy; 2026 Juan Carlos Medina</span>
+            <span><a href="./">curbwise</a> · <a href="privacy">privacy</a></span>
+        </footer>
+    </div>
+</body>
+</html>

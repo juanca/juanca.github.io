@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curbwise — Privacy Policy</title>
+    <link rel="canonical" href="https://juanca.github.io/curbwise/privacy">
+    <meta name="description" content="Curbwise privacy policy. What we collect, how we use it, and where it's stored.">
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #0a0a0f;
+            --surface: #16161f;
+            --text: #f0f0f5;
+            --text-secondary: rgba(240, 240, 245, 0.6);
+            --text-tertiary: rgba(240, 240, 245, 0.4);
+            --accent: #2980f3;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { opacity: 0.8; }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .nav {
+            margin-bottom: 60px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .updated {
+            color: var(--text-tertiary);
+            font-size: 0.9em;
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li { margin-bottom: 8px; }
+
+        strong { color: var(--text); font-weight: 600; }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-tertiary);
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="./">← curbwise</a>
+        </nav>
+
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated May 9, 2026</p>
+
+        <p>Curbwise is built to do one thing — remember where you parked in San Francisco and warn you before you get a ticket. The privacy story matches the product: <strong>your data stays on your phone</strong>, no accounts, no analytics, no ads.</p>
+
+        <h2>What we collect</h2>
+        <p>Only one thing: <strong>your precise location</strong>, captured when you tap "Save my parking spot" (or trigger the same flow via Siri or CarPlay). We use it to look up which San Francisco blockface you're on and what sweeping schedule applies.</p>
+        <p>Curbwise asks for "When In Use" location authorization. We do not request "Always" or background location.</p>
+
+        <h2>What we don't collect</h2>
+        <ul>
+            <li>No account, login, email, or sign-up — there is no server-side user record.</li>
+            <li>No analytics. No third-party SDKs. No advertising identifiers.</li>
+            <li>No crash reporting beyond Apple's own opt-in TestFlight/App Store crash reports, which we receive anonymized through App Store Connect.</li>
+            <li>No payment information — Curbwise is free.</li>
+        </ul>
+
+        <h2>Where your data is stored</h2>
+        <p>Your saved parking sessions (location, blockface label, time-limit info, departure timestamps) live in a SwiftData store on your device. The store is shared between the iOS app and the Home Screen widget via an iOS App Group, but stays inside your phone's sandbox. Apple's standard iCloud Backup will include it if you have backup enabled — that's between you and Apple.</p>
+        <p>Deleting the app removes everything.</p>
+
+        <h2>Third-party data sources</h2>
+        <p>Curbwise queries San Francisco's public DataSF feeds to download the city's sweeping schedule and parking regulations:</p>
+        <ul>
+            <li><a href="https://data.sfgov.org/City-Infrastructure/Street-Sweeping-Schedule/yhqp-riqs">Street Sweeping Schedule</a> (yhqp-riqs)</li>
+            <li><a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">Parking Regulations</a> (hi6h-neyh)</li>
+        </ul>
+        <p>These requests fetch the city's data and do not include any information about you. The full datasets are cached on your phone so most lookups happen offline.</p>
+
+        <h2>Notifications</h2>
+        <p>Curbwise schedules <strong>local</strong> notifications (sweeping warnings, time-limit warnings) using iOS's standard notification center. Nothing is pushed from a remote server — there is no remote server.</p>
+
+        <h2>Children</h2>
+        <p>Curbwise is not directed at children under 13 and does not knowingly collect data from them.</p>
+
+        <h2>Changes</h2>
+        <p>If this policy changes, the "Last updated" date at the top will change too. Material changes will be called out in the app's release notes.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about privacy? Email <a href="mailto:juanca.med@gmail.com">juanca.med@gmail.com</a>.</p>
+
+        <footer>
+            <span>&copy; 2026 Juan Carlos Medina</span>
+            <span><a href="./">curbwise</a> · <a href="support">support</a></span>
+        </footer>
+    </div>
+</body>
+</html>
