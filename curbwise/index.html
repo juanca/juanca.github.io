@@ -293,6 +293,33 @@
             display: block;
         }
 
+        .appearance-toggle {
+            display: inline-flex;
+            gap: 0;
+            padding: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .appearance-toggle button {
+            background: transparent;
+            border: 0;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.85em;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        .appearance-toggle button[aria-pressed="true"] {
+            background: var(--accent);
+            color: white;
+        }
+
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
             section { margin-bottom: 56px; }
@@ -321,33 +348,37 @@
 
         <section>
             <p class="section-title">A look inside</p>
-            <div class="screenshots-scroll">
+            <div class="appearance-toggle" role="group" aria-label="App appearance">
+                <button type="button" data-appearance="light" aria-pressed="true">Light</button>
+                <button type="button" data-appearance="dark" aria-pressed="false">Dark</button>
+            </div>
+            <div class="screenshots-scroll" id="screenshots-rail">
                 <div class="shot">
-                    <img src="screenshots/05_imminent_sweep.png" alt="Saved-spot card showing imminent sweep warning, time-limit countdown, and walk-back distance over a map of the parked block.">
+                    <img data-light="screenshots/05_imminent_sweep.png" data-dark="screenshots/05_imminent_sweep_dark.png" src="screenshots/05_imminent_sweep.png" alt="Saved-spot card showing imminent sweep warning, time-limit countdown, and walk-back distance over a map of the parked block.">
                     <span class="shot-caption">Saved spot — sweep + time-limit countdowns and walk-back distance.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/15_find_spot.png" alt="Ranked list of nearby blockfaces showing how long you can park before the next sweep.">
+                    <img data-light="screenshots/15_find_spot.png" data-dark="screenshots/15_find_spot_dark.png" src="screenshots/15_find_spot.png" alt="Ranked list of nearby blockfaces showing how long you can park before the next sweep.">
                     <span class="shot-caption">Find a spot — ranked list of where to park longest.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/12_multi_car_home.png" alt="Home screen showing two parking spot cards stacked, one per car, each with a vehicle pill in the header.">
+                    <img data-light="screenshots/12_multi_car_home.png" data-dark="screenshots/12_multi_car_home_dark.png" src="screenshots/12_multi_car_home.png" alt="Home screen showing two parking spot cards stacked, one per car, each with a vehicle pill in the header.">
                     <span class="shot-caption">Multi-car — one card per vehicle, color-coded urgency.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/02_picker.png" alt="Block picker sheet listing nearby candidate blockfaces with their sweeping schedules.">
+                    <img data-light="screenshots/02_picker.png" data-dark="screenshots/02_picker_dark.png" src="screenshots/02_picker.png" alt="Block picker sheet listing nearby candidate blockfaces with their sweeping schedules.">
                     <span class="shot-caption">Confirm the block — GPS isn't perfect, so you pick.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/08_widget_medium.png" alt="Home Screen widget showing Next Sweep countdown alongside a small map of the parked block.">
+                    <img data-light="screenshots/08_widget_medium.png" data-dark="screenshots/08_widget_medium_dark.png" src="screenshots/08_widget_medium.png" alt="Home Screen widget showing Next Sweep countdown alongside a small map of the parked block.">
                     <span class="shot-caption">Home Screen widget with the next-sweep countdown and a map.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/10_timelimit_actions.png" alt="Expanded notification banner with Snooze 1 hour and I moved my car action buttons.">
+                    <img data-light="screenshots/10_timelimit_actions.png" data-dark="screenshots/10_timelimit_actions_dark.png" src="screenshots/10_timelimit_actions.png" alt="Expanded notification banner with Snooze 1 hour and I moved my car action buttons.">
                     <span class="shot-caption">Time-limit warning — snooze if you're skirting it.</span>
                 </div>
                 <div class="shot">
-                    <img src="screenshots/00_onboarding.png" alt="First-launch onboarding sheet listing what curbwise covers and what it doesn't.">
+                    <img data-light="screenshots/00_onboarding.png" data-dark="screenshots/00_onboarding_dark.png" src="screenshots/00_onboarding.png" alt="First-launch onboarding sheet listing what curbwise covers and what it doesn't.">
                     <span class="shot-caption">Honest onboarding — what we cover, what we don't.</span>
                 </div>
             </div>
@@ -442,5 +473,33 @@
             <span><a href="privacy">privacy</a> · <a href="support">support</a></span>
         </footer>
     </div>
+    <script>
+        (function () {
+            const toggle = document.querySelector('.appearance-toggle');
+            if (!toggle) return;
+            const buttons = toggle.querySelectorAll('button');
+            const images = document.querySelectorAll('img[data-light][data-dark]');
+
+            function apply(mode) {
+                images.forEach(img => {
+                    const next = img.dataset[mode];
+                    if (next && img.getAttribute('src') !== next) {
+                        img.setAttribute('src', next);
+                    }
+                });
+                buttons.forEach(b => {
+                    b.setAttribute('aria-pressed', b.dataset.appearance === mode ? 'true' : 'false');
+                });
+            }
+
+            // Honor the visitor's OS preference on first load.
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            apply(prefersDark ? 'dark' : 'light');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => apply(button.dataset.appearance));
+            });
+        })();
+    </script>
 </body>
 </html>
