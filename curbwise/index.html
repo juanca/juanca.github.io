@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curbwise — Never miss street cleaning again</title>
     <link rel="canonical" href="https://juanca.github.io/curbwise/">
-    <meta name="description" content="Curbwise saves where you parked in San Francisco, looks up the sweeping schedule, and reminds you before the sweeper comes. iPhone, CarPlay, and Siri.">
+    <meta name="description" content="Curbwise saves where you parked in San Francisco and Oakland, looks up the sweeping schedule, and reminds you before the sweeper comes. iPhone, CarPlay, Apple Watch, and Siri.">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://juanca.github.io/curbwise/">
     <meta property="og:title" content="Curbwise — Never miss street cleaning again">
-    <meta property="og:description" content="Saves where you parked, looks up the sweeping schedule, and reminds you before the sweeper comes. For San Francisco drivers.">
+    <meta property="og:description" content="Saves where you parked, looks up the sweeping schedule, and reminds you before the sweeper comes. For San Francisco and Oakland drivers.">
     <meta property="og:image" content="https://juanca.github.io/curbwise/icon.png">
 
     <link rel="icon" href="icon.png" type="image/png">
@@ -268,6 +268,31 @@
             .shot { width: 260px; }
         }
 
+        .watch-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .watch-shot {
+            flex: 0 0 auto;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .watch-shot img {
+            width: 100%;
+            height: auto;
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            background: #000;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            display: block;
+        }
+
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
             section { margin-bottom: 56px; }
@@ -290,7 +315,7 @@
             <div class="hero-text">
                 <h1>Never miss street cleaning again.</h1>
                 <p>Curbwise saves where you parked, finds the sweeping schedule for that block, and reminds you before the sweeper comes — so the only thing on your windshield is your wipers.</p>
-                <span class="badge">Coming soon · iPhone · CarPlay · Siri</span>
+                <span class="badge">Coming soon · iPhone · Apple Watch · CarPlay · Siri</span>
             </div>
         </header>
 
@@ -300,6 +325,14 @@
                 <div class="shot">
                     <img src="screenshots/05_imminent_sweep.png" alt="Saved-spot card showing imminent sweep warning, time-limit countdown, and walk-back distance over a map of the parked block.">
                     <span class="shot-caption">Saved spot — sweep + time-limit countdowns and walk-back distance.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/15_find_spot.png" alt="Ranked list of nearby blockfaces showing how long you can park before the next sweep.">
+                    <span class="shot-caption">Find a spot — ranked list of where to park longest.</span>
+                </div>
+                <div class="shot">
+                    <img src="screenshots/12_multi_car_home.png" alt="Home screen showing two parking spot cards stacked, one per car, each with a vehicle pill in the header.">
+                    <span class="shot-caption">Multi-car — one card per vehicle, color-coded urgency.</span>
                 </div>
                 <div class="shot">
                     <img src="screenshots/02_picker.png" alt="Block picker sheet listing nearby candidate blockfaces with their sweeping schedules.">
@@ -321,19 +354,45 @@
         </section>
 
         <section>
+            <p class="section-title">On your wrist</p>
+            <div class="watch-row">
+                <div class="watch-shot">
+                    <img src="screenshots/16_watch_populated.png" alt="Apple Watch showing 'Next sweep: 13min 48sec' for Hayes St in red urgency.">
+                    <span class="shot-caption">Active spot — countdown + block, in your urgency color.</span>
+                </div>
+                <div class="watch-shot">
+                    <img src="screenshots/17_watch_empty.png" alt="Apple Watch showing 'Not parked — Save a spot from your iPhone'.">
+                    <span class="shot-caption">Empty state — save from your phone, see it instantly.</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
             <p class="section-title">What it does</p>
             <div class="features">
                 <div class="feature">
                     <h3>One tap to save</h3>
-                    <p>Tap the button when you park. Curbwise grabs your location and looks up the block from San Francisco's open data.</p>
+                    <p>Tap the button when you park. When GPS is decisive, auto-snap skips the picker — one tap and you're done.</p>
                 </div>
                 <div class="feature">
                     <h3>Smart reminders</h3>
-                    <p>Gets a notification fifteen minutes before the next sweep so you have time to move the car — or coffee, or whatever.</p>
+                    <p>A notification fifteen minutes before the next sweep so you have time to move the car. Snooze action for 2-hour zones when you're skirting it.</p>
+                </div>
+                <div class="feature">
+                    <h3>Find a spot nearby</h3>
+                    <p>Driving around? Curbwise ranks nearby blockfaces by how long you can park before the next sweep — "4 days here, 5 hours there." Tap to navigate.</p>
+                </div>
+                <div class="feature">
+                    <h3>Multi-car</h3>
+                    <p>Track multiple cars side by side. Each car gets its own saved spot, sweep schedule, and notifications. Add as many as you want.</p>
+                </div>
+                <div class="feature">
+                    <h3>Apple Watch</h3>
+                    <p>Glance at your wrist for the next-sweep countdown. Complication for your watch face. The active spot syncs from your iPhone automatically.</p>
                 </div>
                 <div class="feature">
                     <h3>Pick your block</h3>
-                    <p>GPS isn't always perfect, especially between buildings. The picker shows nearby candidates with their schedule so you confirm the right curb.</p>
+                    <p>When GPS is ambiguous, the picker shows nearby candidates with their schedule so you confirm the right curb.</p>
                 </div>
                 <div class="feature">
                     <h3>Built for the car</h3>
@@ -374,7 +433,7 @@
         <section>
             <p class="section-title">Heads up</p>
             <div class="scope">
-                Curbwise is <strong>San Francisco only</strong> for the first release, and covers <strong>street sweeping plus posted time limits</strong>. Color curbs (red, yellow, white, green, blue) and metered parking aren't covered yet — both are on the roadmap. Built on the city's <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">DataSF</a> open feeds.
+                Curbwise covers <strong>San Francisco and Oakland</strong> at launch, and tracks <strong>street sweeping plus posted time limits</strong> (time limits are SF-only — Oakland doesn't publish that data yet). Color curbs (red, yellow, white, green, blue), metered parking, and RPP zones aren't covered yet — they're on the roadmap. Built on the cities' open data: <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">DataSF</a> for San Francisco and Oakland's ArcGIS service for street sweeping.
             </div>
         </section>
 
