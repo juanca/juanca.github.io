@@ -304,6 +304,13 @@
             line-height: 1.4;
         }
 
+        /* Phone-width captions: bump the size so the rail story
+           still reads when the user is scrolling one shot at a
+           time on a small screen. */
+        @media (max-width: 600px) {
+            .shot-caption { font-size: 1em; line-height: 1.5; }
+        }
+
         @media (min-width: 720px) {
             .shot { width: 260px; }
         }
