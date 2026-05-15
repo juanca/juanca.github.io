@@ -138,6 +138,38 @@
             padding: 24px;
         }
 
+        .why-curbwise {
+            margin: 0 0 48px;
+        }
+
+        .why-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (min-width: 720px) {
+            .why-list { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .why-list li {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 20px;
+            color: var(--text-primary);
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .why-list em {
+            font-style: normal;
+            font-weight: 700;
+        }
+
         .feature h3 {
             font-size: 1.1em;
             font-weight: 700;
@@ -340,11 +372,20 @@
         <header class="hero">
             <img src="icon.png" alt="Curbwise app icon" class="hero-icon">
             <div class="hero-text">
-                <h1>Never miss street cleaning again.</h1>
-                <p>Curbwise saves where you parked, finds the sweeping schedule for that block, and reminds you before the sweeper comes — so the only thing on your windshield is your wipers.</p>
-                <span class="badge">Coming soon · iPhone · Apple Watch · CarPlay · Siri</span>
+                <h1>See safe parking at a glance.</h1>
+                <p>Pan the map. Curbs turn red-to-green by time left before the next sweep. Tap to save — and curbwise warns you fifteen minutes before the truck rolls.</p>
+                <span class="badge">Launching soon · iPhone · Apple Watch · CarPlay · Siri</span>
             </div>
         </header>
+
+        <section class="why-curbwise" aria-labelledby="why-heading">
+            <p id="why-heading" class="section-title">Why curbwise</p>
+            <ul class="why-list">
+                <li>Apple &amp; Google show you where you parked. Curbwise warns you when to <em>move</em>.</li>
+                <li>Color-coded curbs — red, orange, yellow, green — so safe spots pop without reading every sign.</li>
+                <li>Street sweeping <em>and</em> posted hourly limits in one map, both alerted before the ticket lands.</li>
+            </ul>
+        </section>
 
         <section>
             <p class="section-title">A look inside</p>
