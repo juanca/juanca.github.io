@@ -105,12 +105,12 @@
         </nav>
 
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated May 9, 2026</p>
+        <p class="updated">Last updated May 18, 2026</p>
 
-        <p>Curbwise is built to do one thing — remember where you parked in San Francisco and warn you before you get a ticket. The privacy story matches the product: <strong>your data stays on your phone</strong>, no accounts, no analytics, no ads.</p>
+        <p>Curbwise is built to do one thing — remember where you parked in San Francisco or Oakland and warn you before you get a ticket. The privacy story matches the product: <strong>your data stays on your phone</strong>, no accounts, no analytics, no ads.</p>
 
         <h2>What we collect</h2>
-        <p>Only one thing: <strong>your precise location</strong>, captured when you tap "Save my parking spot" (or trigger the same flow via Siri or CarPlay). We use it to look up which San Francisco blockface you're on and what sweeping schedule applies.</p>
+        <p>Only one thing: <strong>your precise location</strong>, captured when you tap "Save here" (or trigger the same flow via Siri or CarPlay). We use it to look up which San Francisco or Oakland blockface you're on and what sweeping schedule applies.</p>
         <p>Curbwise asks for "When In Use" location authorization. We do not request "Always" or background location.</p>
 
         <h2>What we don't collect</h2>
@@ -126,12 +126,12 @@
         <p>Deleting the app removes everything.</p>
 
         <h2>Third-party data sources</h2>
-        <p>Curbwise queries San Francisco's public DataSF feeds to download the city's sweeping schedule and parking regulations:</p>
+        <p>Curbwise queries each city's public data endpoints to download sweeping schedules and (for San Francisco) parking regulations:</p>
         <ul>
-            <li><a href="https://data.sfgov.org/City-Infrastructure/Street-Sweeping-Schedule/yhqp-riqs">Street Sweeping Schedule</a> (yhqp-riqs)</li>
-            <li><a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">Parking Regulations</a> (hi6h-neyh)</li>
+            <li><strong>San Francisco</strong> — DataSF: <a href="https://data.sfgov.org/City-Infrastructure/Street-Sweeping-Schedule/yhqp-riqs">Street Sweeping Schedule</a> (yhqp-riqs) and <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">Parking Regulations</a> (hi6h-neyh).</li>
+            <li><strong>Oakland</strong> — the city's GIS street-sweeping routes feature service at <code>gisapps1.mapoakland.com</code> (<code>oakgis/rest/services/Prod/streetSweepingRoutes</code>).</li>
         </ul>
-        <p>These requests fetch the city's data and do not include any information about you. The full datasets are cached on your phone so most lookups happen offline.</p>
+        <p>These requests fetch each city's data and do not include any information about you. The full datasets are cached on your phone so most lookups happen offline.</p>
 
         <h2>Notifications</h2>
         <p>Curbwise schedules <strong>local</strong> notifications (sweeping warnings, time-limit warnings) using iOS's standard notification center. Nothing is pushed from a remote server — there is no remote server.</p>
