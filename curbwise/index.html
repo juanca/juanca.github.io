@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curbwise — See safe parking at a glance</title>
     <link rel="canonical" href="https://juanca.github.io/curbwise/">
-    <meta name="description" content="Pan the map. Curbs turn red-to-green by time left before the next sweep. Tap to save — curbwise warns you fifteen minutes before the truck rolls. For San Francisco and Oakland drivers.">
+    <meta name="description" content="Pan the map. Curbs turn red-to-green by time left before the next sweep. Tap to save — curbwise warns you fifteen minutes before the truck rolls. Free on the App Store for San Francisco and Oakland drivers.">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://juanca.github.io/curbwise/">
     <meta property="og:title" content="Curbwise — See safe parking at a glance">
-    <meta property="og:description" content="Curbs turn red-to-green by time left before the next sweep. Tap to save — curbwise warns you 15 minutes before the truck rolls. SF + Oakland.">
+    <meta property="og:description" content="Curbs turn red-to-green by time left before the next sweep. Tap to save — curbwise warns you 15 minutes before the truck rolls. Free on the App Store. SF + Oakland.">
     <meta property="og:image" content="https://juanca.github.io/curbwise/hero.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -19,7 +19,7 @@
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Curbwise — See safe parking at a glance">
-    <meta name="twitter:description" content="Curbs turn red-to-green by time left before the next sweep. Tap to save. SF + Oakland.">
+    <meta name="twitter:description" content="Curbs turn red-to-green by time left before the next sweep. Tap to save. Free on the App Store. SF + Oakland.">
     <meta name="twitter:image" content="https://juanca.github.io/curbwise/hero.png">
 
     <link rel="icon" href="icon.png" type="image/png">
@@ -118,6 +118,26 @@
             border: 1px solid rgba(41, 128, 243, 0.3);
         }
 
+        .cta-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .app-store-badge img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-text p.cta-note {
+            font-size: 0.9em;
+            color: var(--text-tertiary);
+            margin-bottom: 0;
+        }
+
         .section-title {
             font-size: 0.85em;
             font-weight: 600;
@@ -159,8 +179,10 @@
             padding: 0;
         }
 
+        /* Two columns, not three: the list grew to four bullets when the
+           free/paid split was added, and 3-up left a lone orphan. */
         @media (min-width: 720px) {
-            .why-list { grid-template-columns: repeat(3, 1fr); }
+            .why-list { grid-template-columns: repeat(2, 1fr); }
         }
 
         .why-list li {
@@ -230,6 +252,34 @@
             color: var(--text-secondary);
             font-size: 0.9em;
         }
+
+        /* The Plus grid is the same card grid as .features; the tinted
+           border is the only difference, so a reader skimming the two
+           sections can tell at a glance which half costs money. */
+        .feature.plus {
+            border-color: rgba(41, 128, 243, 0.32);
+            background: linear-gradient(var(--surface), var(--surface)) padding-box,
+                        rgba(41, 128, 243, 0.06);
+        }
+
+        .plus-lede {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            max-width: 640px;
+            margin-bottom: 24px;
+        }
+
+        .plus-lede strong { color: var(--text); font-weight: 600; }
+
+        .fineprint {
+            margin-top: 20px;
+            color: var(--text-tertiary);
+            font-size: 0.82em;
+            line-height: 1.6;
+            max-width: 720px;
+        }
+
+        .fineprint a { color: var(--text-tertiary); text-decoration: underline; }
 
         .scope {
             background: var(--surface);
@@ -389,7 +439,13 @@
             <div class="hero-text">
                 <h1>See safe parking at a glance.</h1>
                 <p>Pan the map. Curbs turn red-to-green by time left before the next sweep. Tap to save — and curbwise warns you fifteen minutes before the truck rolls.</p>
-                <span class="badge">Launching soon · iPhone · Apple Watch · CarPlay · Siri</span>
+                <div class="cta-row">
+                    <a class="app-store-badge" href="https://apps.apple.com/us/app/curbwise/id6766391699">
+                        <img src="app-store-badge.svg" alt="Download curbwise on the App Store">
+                    </a>
+                    <span class="badge">iPhone · Apple Watch · CarPlay · Siri</span>
+                </div>
+                <p class="cta-note">Free, and no account to make. Curbwise Plus is optional — $1/month or $10/year.</p>
             </div>
         </header>
 
@@ -397,8 +453,9 @@
             <p id="why-heading" class="section-title">Why curbwise</p>
             <ul class="why-list">
                 <li>Apple &amp; Google show you where you parked. Curbwise warns you when to <em>move</em>.</li>
-                <li>Color-coded curbs — red, orange, yellow, green — so safe spots pop without reading every sign.</li>
+                <li>Color-coded curbs — red, orange, green — so safe spots pop without reading every sign.</li>
                 <li>Street sweeping <em>and</em> posted hourly limits in one map, both alerted before the ticket lands.</li>
+                <li>The part that saves you a ticket is <em>free</em>. Plus adds extra cars, sharing, and earlier warnings.</li>
             </ul>
         </section>
 
@@ -410,32 +467,36 @@
             </div>
             <div class="screenshots-scroll" id="screenshots-rail">
                 <div class="shot">
-                    <img data-light="screenshots/15_find_spot.png" data-dark="screenshots/15_find_spot_dark.png" src="screenshots/15_find_spot.png" alt="Pan the map and the pin moves with it; nearby curbs are colored red (sweep soon) to green (plenty of time) so the next-best spot is obvious at a glance.">
-                    <span class="shot-caption">1. Glance — curbs colored red → green by park time.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/15_find_spot.png" data-dark="screenshots/15_find_spot_dark.png" src="screenshots/15_find_spot.png" alt="Pan the map and the pin moves with it; nearby curbs are painted red (sweep imminent) through green (days to go), so the next-best spot is obvious without reading a sign.">
+                    <span class="shot-caption">1. Glance — curbs painted red → green by how long you can park.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/01_home.png" data-dark="screenshots/01_home_dark.png" src="screenshots/01_home.png" alt="Unified home screen: the pin sits on the user's matched block, the bottom card shows its schedule, and a single Save here button commits the spot.">
-                    <span class="shot-caption">2. Park — pin lands on your curb, one tap to save.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/01_home.png" data-dark="screenshots/01_home_dark.png" src="screenshots/01_home.png" alt="The home map with the pin on Hayes St; the card below names the block, counts down the time until the next sweep, and offers Save here.">
+                    <span class="shot-caption">2. Park — the pin lands on your curb, one tap to save.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/05_imminent_sweep.png" data-dark="screenshots/05_imminent_sweep_dark.png" src="screenshots/05_imminent_sweep.png" alt="Home map showing the matched block's sweep + time-limit rules — colored polylines around it show how much time other nearby spots have left.">
-                    <span class="shot-caption">3. See your spot — sweep + time-limit countdowns.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/18_saved_spot_actions.png" data-dark="screenshots/18_saved_spot_actions_dark.png" src="screenshots/18_saved_spot_actions.png" alt="The saved-spot sheet: the block's posted sweeping sign, time parked and time left on the 2-hour limit, and Moved / Walk / Share buttons.">
+                    <span class="shot-caption">3. Your spot — the posted sign, the clock, and the walk back.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/10_timelimit_actions.png" data-dark="screenshots/10_timelimit_actions_dark.png" src="screenshots/10_timelimit_actions.png" alt="Expanded notification banner with Snooze 1 hour and I moved my car action buttons.">
-                    <span class="shot-caption">4. Get warned — snooze if you're skirting the limit.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/09_timelimit_banner.png" data-dark="screenshots/09_timelimit_banner_dark.png" src="screenshots/09_timelimit_banner.png" alt="A time-sensitive notification banner reading '2-hour limit almost up' over the Home Screen, above the curbwise widget counting down to the next sweep.">
+                    <span class="shot-caption">4. Get warned — before the limit, not after the ticket.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/12_multi_car_home.png" data-dark="screenshots/12_multi_car_home_dark.png" src="screenshots/12_multi_car_home.png" alt="Unified home with multiple saved-spot pins on the map, one per car, each rendered with its own emoji.">
-                    <span class="shot-caption">5. Multi-car — a pin per vehicle, all on one map.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/20_watched_block_map.png" data-dark="screenshots/20_watched_block_map_dark.png" src="screenshots/20_watched_block_map.png" alt="A watched block marked with a green bookmark on the map, the bottom card reading Watching this block.">
+                    <span class="shot-caption">5. Watch a block (Plus) — claim it the moment it's swept.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/08_widget_medium.png" data-dark="screenshots/08_widget_medium_dark.png" src="screenshots/08_widget_medium.png" alt="Home Screen widget showing Next Sweep countdown alongside a small map of the parked block.">
-                    <span class="shot-caption">6. Home Screen widget — countdown + block at a glance.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/13_multi_car_settings.png" data-dark="screenshots/13_multi_car_settings_dark.png" src="screenshots/13_multi_car_settings.png" alt="The Manage screen listing two cars, the watched block, and sweep reminders, with each paid row tagged by a PLUS badge.">
+                    <span class="shot-caption">6. Plainly marked — every paid row wears a PLUS badge.</span>
                 </div>
                 <div class="shot">
-                    <img data-light="screenshots/00_onboarding.png" data-dark="screenshots/00_onboarding_dark.png" src="screenshots/00_onboarding.png" alt="First-launch onboarding sheet listing what curbwise covers and what it doesn't.">
-                    <span class="shot-caption">7. Honest onboarding — what we cover, what we don't.</span>
+                    <img loading="lazy" decoding="async" data-light="screenshots/07_widget_small.png" data-dark="screenshots/07_widget_small_dark.png" src="screenshots/07_widget_small.png" alt="Home Screen widget showing the next-sweep countdown beside a small map of the parked block.">
+                    <span class="shot-caption">7. Home Screen widget — countdown + block at a glance.</span>
+                </div>
+                <div class="shot">
+                    <img loading="lazy" decoding="async" data-light="screenshots/00_onboarding.png" data-dark="screenshots/00_onboarding_dark.png" src="screenshots/00_onboarding.png" alt="First-launch onboarding sheet listing what curbwise covers and what it doesn't, with a Curbwise Plus tab alongside.">
+                    <span class="shot-caption">8. Honest onboarding — what we cover, what we don't.</span>
                 </div>
             </div>
         </section>
@@ -444,75 +505,120 @@
             <p class="section-title">On your wrist</p>
             <div class="watch-row">
                 <div class="watch-shot">
-                    <img src="screenshots/16_watch_populated.png" alt="Apple Watch showing 'Next sweep: 13min 48sec' for Hayes St in red urgency.">
-                    <span class="shot-caption">Active spot — countdown + block, in your urgency color.</span>
+                    <img loading="lazy" decoding="async" src="screenshots/17_watch_saved_spot.png" alt="Apple Watch showing the next-sweep countdown over a map of the parked block.">
+                    <span class="shot-caption">Your spot — the countdown, over the block it belongs to.</span>
                 </div>
                 <div class="watch-shot">
-                    <img src="screenshots/17_watch_empty.png" alt="Apple Watch showing 'Not parked — Save a spot from your iPhone'.">
-                    <span class="shot-caption">Empty state — save from your phone, see it instantly.</span>
+                    <img loading="lazy" decoding="async" src="screenshots/18_watch_time_limit.png" alt="Apple Watch showing the time remaining on a posted hourly limit.">
+                    <span class="shot-caption">Hourly zones — time left before the posted limit is up.</span>
+                </div>
+                <div class="watch-shot">
+                    <img loading="lazy" decoding="async" src="screenshots/16_watch_home.png" alt="Apple Watch showing 'Not parked — save a spot from your iPhone'.">
+                    <span class="shot-caption">Not parked — save from your phone, see it here instantly.</span>
                 </div>
             </div>
         </section>
 
         <section>
-            <p class="section-title">What it does</p>
+            <p class="section-title">What you get, free</p>
             <div class="features">
                 <div class="feature">
                     <h3>One tap to save</h3>
-                    <p>Tap the button when you park. When GPS is decisive, auto-snap skips the picker — one tap and you're done.</p>
+                    <p>The home screen is a map with a pin at its centre. Pan until the pin sits on your curb, check the schedule on the card below, and tap Save here.</p>
                 </div>
                 <div class="feature">
-                    <h3>Smart reminders</h3>
-                    <p>A notification fifteen minutes before the next sweep so you have time to move the car. Snooze action for 2-hour zones when you're skirting it.</p>
+                    <h3>Sweep warning</h3>
+                    <p>A notification fifteen minutes before street sweeping starts on your block — time-sensitive, so it breaks through Focus and Do Not Disturb.</p>
+                </div>
+                <div class="feature">
+                    <h3>Time-limit warning</h3>
+                    <p>For posted hourly zones (typically 2 hours, Mon–Sat), a heads-up before the limit is up. Tap "Snooze 1 hour" if you're skirting it. San Francisco only — Oakland doesn't publish that data.</p>
                 </div>
                 <div class="feature">
                     <h3>Find a spot nearby</h3>
-                    <p>Glance the map. Red curbs mean the sweeper's minutes away. Green means you've got days. Pan the pin onto whichever curb you like — the bottom card shows the precise time and a one-tap save.</p>
-                </div>
-                <div class="feature">
-                    <h3>Multi-car</h3>
-                    <p>Track multiple cars side by side. Each car gets its own saved spot, sweep schedule, and notifications. Add as many as you want.</p>
+                    <p>Glance the map. Red curbs sweep within hours, orange within a day, green beyond that. Pan the pin onto whichever curb you like — the bottom card shows the precise time and a one-tap save.</p>
                 </div>
                 <div class="feature">
                     <h3>Apple Watch</h3>
-                    <p>Glance at your wrist for the next-sweep countdown. Complication for your watch face. The active spot syncs from your iPhone automatically.</p>
+                    <p>The next-sweep countdown on your wrist, laid over the block you parked on, plus a complication for your watch face. Syncs from your iPhone automatically.</p>
                 </div>
                 <div class="feature">
-                    <h3>Pick your block</h3>
-                    <p>The home map is the picker. A fixed pin sits at the screen's center; pan the map to slide the pin onto the right curb, and the bottom card snaps to that block's schedule before you commit.</p>
+                    <h3>Home Screen widget</h3>
+                    <p>Countdown to the next sweep with a small map of your block. Pick which car it tracks, or point it at the next sweep across all of them.</p>
                 </div>
                 <div class="feature">
                     <h3>Built for the car</h3>
-                    <p>Full CarPlay support. Save before you leave the seat, or auto-save the moment you unplug.</p>
+                    <p>Full CarPlay support. Save before you leave the seat, or let curbwise auto-save the moment you unplug.</p>
                 </div>
                 <div class="feature">
                     <h3>Hey Siri, I parked</h3>
-                    <p>Hands-free voice trigger captures your spot and tells you when the sweeper's coming.</p>
+                    <p>"Hey Siri, I parked in curbwise" captures your spot hands-free and tells you when the sweeper's coming.</p>
+                </div>
+                <div class="feature">
+                    <h3>Walk back</h3>
+                    <p>The distance and walking time from wherever you are now to wherever you left the car.</p>
+                </div>
+                <div class="feature">
+                    <h3>iCloud sync</h3>
+                    <p>Your parking history follows you across iPhone, iPad, and Apple Watch through your own private iCloud account. No servers of ours in the middle.</p>
                 </div>
                 <div class="feature">
                     <h3>Works offline</h3>
-                    <p>The whole city's sweeping schedule is cached on your phone. No data signal, no problem.</p>
+                    <p>Both cities' sweeping schedules are cached on your phone. No data signal, no problem.</p>
+                </div>
+                <div class="feature">
+                    <h3>No account</h3>
+                    <p>Nothing to sign up for, no analytics, no ads, no third-party tracking. Open the app and park.</p>
                 </div>
             </div>
         </section>
-
+        <section>
+            <p class="section-title">Curbwise Plus — $1/month or $10/year</p>
+            <p class="plus-lede">Everything above stays free. <strong>Plus</strong> adds the extras below, and helps keep the city parking data up to date.</p>
+            <div class="features">
+                <div class="feature plus">
+                    <h3>Track multiple cars</h3>
+                    <p>Each car gets its own saved spot, sweep schedule, and reminders. The home screen switches between them and the history filters per car.</p>
+                </div>
+                <div class="feature plus">
+                    <h3>Share a car</h3>
+                    <p>You and a partner see the same parking spot, updated live through iCloud. Whoever moves it, you both know.</p>
+                </div>
+                <div class="feature plus">
+                    <h3>Watch a block</h3>
+                    <p>Spot a good sweep-only block? Tap "Watch this block" and curbwise reminds you before its next cleaning, so you can park there right after for a clean week.</p>
+                </div>
+                <div class="feature plus">
+                    <h3>Custom sweep reminders</h3>
+                    <p>Add earlier warnings — a day before, two hours out — instead of only the free fifteen minutes.</p>
+                </div>
+                <div class="feature plus">
+                    <h3>Sound a real alarm</h3>
+                    <p>Your last reminder takes over the screen and rings through the ring/silent switch, like a Clock alarm — so a silenced phone doesn't cost you a ticket. Requires iOS 26.</p>
+                </div>
+            </div>
+            <p class="fineprint">
+                Payment is charged to your Apple Account at purchase. Subscriptions renew automatically unless cancelled at least 24 hours before the period ends; manage or cancel in Settings → your Apple Account → Subscriptions.
+                <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (EULA)</a> · <a href="privacy">Privacy Policy</a>
+            </p>
+        </section>
         <section>
             <p class="section-title">How it works</p>
             <div class="steps">
                 <div class="step">
                     <span class="step-number">1</span>
                     <h3>Park</h3>
-                    <p>Tap save in the app, in CarPlay, or ask Siri.</p>
+                    <p>Tap Save here in the app, save from CarPlay, or ask Siri — hands never leave the wheel.</p>
                 </div>
                 <div class="step">
                     <span class="step-number">2</span>
-                    <h3>Confirm the block</h3>
-                    <p>Curbwise shows nearby curbs with their sweeping schedule. Tap yours.</p>
+                    <h3>Land the pin</h3>
+                    <p>Pan the map so the centre pin sits on your curb. The card below names the block and its schedule before you commit.</p>
                 </div>
                 <div class="step">
                     <span class="step-number">3</span>
                     <h3>Get reminded</h3>
-                    <p>A notification arrives before the next sweep. Move the car. Done.</p>
+                    <p>A notification arrives fifteen minutes before the next sweep. Move the car. Done.</p>
                 </div>
             </div>
         </section>
@@ -520,7 +626,7 @@
         <section>
             <p class="section-title">Heads up</p>
             <div class="scope">
-                Curbwise covers <strong>San Francisco and Oakland</strong> at launch, and tracks <strong>street sweeping plus posted time limits</strong> (time limits are SF-only — Oakland doesn't publish that data yet). Color curbs (red, yellow, white, green, blue), metered parking, and RPP zones aren't covered yet — they're on the roadmap. Built on the cities' open data: <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">DataSF</a> for San Francisco and Oakland's ArcGIS service for street sweeping.
+                Curbwise covers <strong>San Francisco and Oakland</strong>, and tracks <strong>street sweeping plus posted time limits</strong> (time limits are SF-only — Oakland doesn't publish that data yet). Color curbs (red, yellow, white, green, blue), metered parking, and RPP zones aren't covered yet — they're on the roadmap. Built on the cities' open data: <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">DataSF</a> for San Francisco and Oakland's ArcGIS service for street sweeping.
             </div>
         </section>
 

@@ -130,11 +130,12 @@
             <li>If you tapped "I moved my car" on a previous notification, the next one is canceled until you save again.</li>
         </ul>
 
-        <h2>The block picker doesn't show my street</h2>
-        <p>Curbwise looks for blockfaces within 150 meters of where your phone reports you. On urban canyons (downtown, between tall buildings) GPS can drift more than that. Walk to the curb and try again, or save the closest match — the sweep schedule on neighboring blocks is usually similar enough.</p>
+        <h2>The card names the wrong block</h2>
+        <p>Curbwise matches against blockfaces within 150 metres of where your phone reports you. In urban canyons (downtown, between tall buildings) GPS can drift further than that, so the pin can land a block off.</p>
+        <p>You don't have to accept the match: the pin is fixed at the centre of the map, so pan the map until it sits on the curb you actually parked at and the card below updates to that block before you tap Save here.</p>
 
         <h2>The schedule on the sign is different from what curbwise shows</h2>
-        <p>Curbwise reads from San Francisco's public DataSF feed, which reflects the rule but isn't always the very latest update. <strong>The sign on the curb wins.</strong> If you spot a mismatch, email me with the block name and what the sign says — that helps build the freshness signal.</p>
+        <p>Curbwise reads from the cities' own open data — DataSF for San Francisco, the City of Oakland's map service for Oakland — which reflects the rule but isn't always the very latest update. <strong>The sign on the curb wins.</strong> If you spot a mismatch, email me with the block name and what the sign says — that helps build the freshness signal.</p>
 
         <h2>What about red curbs, meters, or RPP zones?</h2>
         <p>Curbwise covers street sweeping and posted hourly time limits in v1. It does not cover painted curbs (red, yellow, white, green, blue), metered parking hours, residential permit zone enforcement, garages, or temporary signage.</p>
@@ -147,7 +148,20 @@
         <p>Email <a href="mailto:juanca.med@gmail.com?subject=Curbwise%20city%20request&body=Hi%20%E2%80%94%20I%27d%20love%20curbwise%20in%20%5Bcity%20name%5D.%0A%0A%28Anything%20else%20you%20want%20to%20mention%20about%20your%20city%27s%20parking%2C%20sweep%20schedule%2C%20or%20what%20would%20make%20curbwise%20useful%20for%20you.%29">juanca.med@gmail.com</a> with the city name. Each request helps me decide which city to wire up next — they're prioritized by how many people ask for the same one.</p>
 
         <h2>What about CarPlay?</h2>
-        <p>CarPlay support is built and waiting on Apple's CarPlay Parking entitlement to be granted. Once it lands, the app will appear in your CarPlay screen with "Save my spot" and "Where did I park" actions.</p>
+        <p>CarPlay is live. Plug in and curbwise appears on the car's screen with the nearby blocks listed by how soon each one sweeps, a "Save here" button for the closest match, and a map view of the same candidates. If you'd rather not touch anything, curbwise can also save the spot on its own the moment you unplug.</p>
+
+        <h2>What costs money?</h2>
+        <p>Saving your spot, the 15-minute sweep warning, time-limit warnings, the map, CarPlay, Siri, the widget, and the Apple Watch app are all free, with no account to make.</p>
+        <p><strong>Curbwise Plus</strong> — $1 per month or $10 per year — adds tracking more than one car, sharing a car with a partner, watching a block, custom (earlier) sweep reminders, and the real alarm. Tapping any of those opens the purchase screen; nothing you already rely on moves behind it.</p>
+
+        <h2>I subscribed, but Plus isn't unlocked</h2>
+        <p>Open the Curbwise Plus screen and tap <strong>Restore Purchases</strong>. That re-checks the Apple Account signed into the device — if you subscribed on a different Apple Account, sign into that one and try again. If it still says nothing to restore, email me with the date of the purchase.</p>
+
+        <h2>How do I cancel?</h2>
+        <p>Settings → your name at the top → Subscriptions → curbwise → Cancel Subscription. Cancelling stops the renewal; Plus keeps working until the period you already paid for runs out. Refunds are handled by Apple, at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, not by me.</p>
+
+        <h2>The alarm didn't sound</h2>
+        <p>The real alarm is a Curbwise Plus feature and it needs <strong>iOS 26 or later</strong> — on anything older, that last reminder arrives as an ordinary notification instead. Check that it's switched on in Manage → Sweep reminders, and that you granted curbwise permission to sound alarms when it asked. Earlier heads-ups in the same sequence are always ordinary notifications by design.</p>
 
         <h2>Privacy</h2>
         <p>See the <a href="privacy">privacy policy</a> for the full breakdown. Short version: location stays on your phone, no accounts, no analytics, no ads.</p>

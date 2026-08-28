@@ -105,7 +105,7 @@
         </nav>
 
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated May 18, 2026</p>
+        <p class="updated">Last updated August 28, 2026</p>
 
         <p>Curbwise is built to do one thing — remember where you parked in San Francisco or Oakland and warn you before you get a ticket. The privacy story matches the product: <strong>your data stays on your phone</strong>, no accounts, no analytics, no ads.</p>
 
@@ -118,18 +118,20 @@
             <li>No account, login, email, or sign-up — there is no server-side user record.</li>
             <li>No analytics. No third-party SDKs. No advertising identifiers.</li>
             <li>No crash reporting beyond Apple's own opt-in TestFlight/App Store crash reports, which we receive anonymized through App Store Connect.</li>
-            <li>No payment information — Curbwise is free.</li>
+            <li>No payment information. The core app is free; the optional Curbwise Plus subscription is billed by Apple through your Apple Account, and Apple never shares your payment details with us. All we ever see is whether this device currently holds an entitlement, and that check happens on-device against Apple's StoreKit.</li>
         </ul>
 
         <h2>Where your data is stored</h2>
-        <p>Your saved parking sessions (location, blockface label, time-limit info, departure timestamps) live in a SwiftData store on your device. The store is shared between the iOS app and the Home Screen widget via an iOS App Group, but stays inside your phone's sandbox. Apple's standard iCloud Backup will include it if you have backup enabled — that's between you and Apple.</p>
-        <p>Deleting the app removes everything.</p>
+        <p>Your saved parking sessions (location, blockface label, time-limit info, departure timestamps) live in a SwiftData store on your device. The store is shared with the Home Screen widget and the Apple Watch app via an iOS App Group, but stays inside your phone's sandbox.</p>
+        <p>If you're signed into iCloud, that store also mirrors to <strong>your own private iCloud database</strong>, which is how your history follows you between iPhone, iPad, and Apple Watch. It is your iCloud account, not ours — we operate no server and cannot read it. Turning off iCloud for curbwise in Settings stops the mirroring; Apple's standard iCloud Backup will still include the local store if you have backup enabled, which is between you and Apple.</p>
+        <p>If you use Curbwise Plus to <strong>share a car with someone</strong>, that one car and its current spot are put in an iCloud share (Apple's CloudKit sharing) so the person you invite can see it. You choose who; you can stop sharing at any time from the car's screen. Nothing else in your history is shared, and again it moves through iCloud rather than through us.</p>
+        <p>Deleting the app removes everything on the device. To also clear the iCloud copy, delete curbwise's data under Settings → your name → iCloud → Manage Account Storage.</p>
 
         <h2>Third-party data sources</h2>
         <p>Curbwise queries each city's public data endpoints to download sweeping schedules and (for San Francisco) parking regulations:</p>
         <ul>
             <li><strong>San Francisco</strong> — DataSF: <a href="https://data.sfgov.org/City-Infrastructure/Street-Sweeping-Schedule/yhqp-riqs">Street Sweeping Schedule</a> (yhqp-riqs) and <a href="https://data.sfgov.org/Transportation/Parking-regulations-except-non-metered-color-curb-/hi6h-neyh">Parking Regulations</a> (hi6h-neyh).</li>
-            <li><strong>Oakland</strong> — the city's GIS street-sweeping routes feature service at <code>gisapps1.mapoakland.com</code> (<code>oakgis/rest/services/Prod/streetSweepingRoutes</code>).</li>
+            <li><strong>Oakland</strong> — the <a href="https://services.arcgis.com/9tC74aDHuml0x5Yz/arcgis/rest/services/StreetSweeping/FeatureServer/0">StreetSweeping feature layer</a> in the City of Oakland's ArcGIS Online organisation: the same layer behind the city's own "Map Your Street's Sweeping" tool. (Curbwise read the city's on-prem <code>gisapps1.mapoakland.com</code> copy until August 2026; the data is identical, but that host stopped answering reliably.)</li>
         </ul>
         <p>These requests fetch each city's data and do not include any information about you. The full datasets are cached on your phone so most lookups happen offline.</p>
 
