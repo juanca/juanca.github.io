@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jyn: ask a neighbor for a hand</title>
+    <link rel="canonical" href="https://juanca.github.io/jyn/">
+    <meta name="description" content="Make a wish anywhere you go and someone nearby can help: borrow a ladder, a hand with a couch, a quick answer, or three more for pickleball. Short-lived, local, and no money, ever.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://juanca.github.io/jyn/">
+    <meta property="og:title" content="jyn: ask a neighbor for a hand">
+    <meta property="og:description" content="Make a wish anywhere you go. Someone nearby can help. Short-lived, local, and no money, ever.">
+    <meta property="og:image" content="https://juanca.github.io/jyn/hero.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="jyn: ask a neighbor for a hand">
+    <meta name="twitter:description" content="Make a wish anywhere you go. Someone nearby can help. No money, ever.">
+    <meta name="twitter:image" content="https://juanca.github.io/jyn/hero.png">
+
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        /* jyn's own palette, the app's Theme.swift: warm paper, white
+           hairline cards, purple for the one thing to do, and soft
+           lavender / peach / mint tints. */
+        :root {
+            --paper: #faf8f4;
+            --card: #ffffff;
+            --hairline: #e9e6ef;
+            --ink: #1c1b22;
+            --text-secondary: #6b6878;
+            --text-tertiary: #a3a0ae;
+            --purple: #6e4bf0;
+            --purple-deep: #4b2fc0;
+            --lavender: #eee8ff;
+            --peach: #fde3d9;
+            --coral: #b4421e;
+            --mint: #dff3e9;
+            --green: #1f6b4a;
+            --rose: #fde4e4;
+            --red: #e5383b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: var(--purple); text-decoration: none; }
+        a:hover { color: var(--purple-deep); }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 56px 24px 64px;
+        }
+
+        .nav {
+            margin-bottom: 64px;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+        .nav a { color: var(--text-secondary); }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 96px;
+        }
+        @media (min-width: 820px) {
+            .hero { grid-template-columns: 1.15fr 0.85fr; gap: 48px; }
+        }
+        .hero-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(110, 75, 240, 0.35);
+            margin-bottom: 28px;
+            display: block;
+        }
+        .hero h1 {
+            font-size: 2.6em;
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 18px;
+        }
+        @media (min-width: 820px) { .hero h1 { font-size: 3.4em; } }
+        .hero .lede {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+        .cta-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            font-weight: 600;
+            padding: 12px 22px;
+            border-radius: 100px;
+            background: var(--purple);
+            color: #fff;
+            white-space: nowrap;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 100px;
+            background: var(--lavender);
+            color: var(--purple-deep);
+        }
+        .cta-note { font-size: 0.9em; color: var(--text-tertiary); }
+
+        .hero-shot {
+            justify-self: center;
+            width: min(320px, 80vw);
+            position: relative;
+        }
+        .hero-shot::before {
+            content: "";
+            position: absolute;
+            inset: 12% -18% -6% -18%;
+            background: radial-gradient(circle, var(--lavender) 0%, rgba(238, 232, 255, 0) 70%);
+            z-index: -1;
+        }
+        .phone {
+            width: 100%;
+            border-radius: 36px;
+            border: 1px solid var(--hairline);
+            box-shadow: 0 24px 60px rgba(75, 47, 192, 0.18);
+            display: block;
+            background: #fff;
+        }
+
+        section { margin-bottom: 96px; }
+        .section-title {
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 2em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+        .section-lede {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin-bottom: 36px;
+        }
+
+        /* Why jyn */
+        .why-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        @media (min-width: 720px) { .why-list { grid-template-columns: repeat(2, 1fr); } }
+        .why-list li {
+            background: var(--card);
+            border: 1px solid var(--hairline);
+            border-radius: 18px;
+            padding: 20px 22px;
+        }
+        .why-list strong { display: block; font-size: 1.05em; margin-bottom: 4px; }
+        .why-list span { color: var(--text-secondary); font-size: 0.97em; }
+
+        /* How it works: one step per row, screenshot beside the words */
+        .steps { display: grid; gap: 56px; }
+        .step {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+        @media (min-width: 760px) {
+            .step { grid-template-columns: 260px 1fr; gap: 56px; }
+            .step:nth-child(even) { grid-template-columns: 1fr 260px; }
+            .step:nth-child(even) .step-shot { order: 2; }
+        }
+        .step-shot { justify-self: center; width: min(260px, 72vw); }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--lavender);
+            color: var(--purple-deep);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .step h3 { font-size: 1.5em; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+        .step p { color: var(--text-secondary); font-size: 1.05em; max-width: 480px; }
+        .step p + p { margin-top: 10px; }
+
+        /* Join me and safety: a tinted panel with a screenshot */
+        .panel {
+            border-radius: 28px;
+            padding: 40px 32px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+        @media (min-width: 760px) {
+            .panel { grid-template-columns: 1fr 260px; padding: 48px 56px; gap: 56px; }
+        }
+        .panel.mint { background: var(--mint); }
+        .panel.mint .section-title, .panel.mint h2 { color: var(--green); }
+        .panel.rose { background: var(--rose); }
+        .panel.rose .section-title, .panel.rose h2 { color: #a3262a; }
+        .panel ul { list-style: none; display: grid; gap: 12px; margin-top: 8px; }
+        .panel li { padding-left: 26px; position: relative; color: var(--ink); }
+        .panel li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 0.6em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.35;
+        }
+        .panel .phone { box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12); }
+
+        /* Gallery: every captured screen, scrolling sideways */
+        .gallery {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 8px 4px 20px;
+            margin: 0 -4px;
+        }
+        .gallery figure {
+            flex: 0 0 210px;
+            scroll-snap-align: start;
+        }
+        .gallery figcaption {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            text-align: center;
+        }
+        .gallery .phone { border-radius: 26px; box-shadow: 0 12px 30px rgba(75, 47, 192, 0.12); }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--hairline);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.9em;
+            color: var(--text-tertiary);
+        }
+        footer a { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="../">← juanca.github.io</a>
+        </nav>
+
+        <header class="hero">
+            <div>
+                <img src="icon.png" alt="jyn app icon" class="hero-icon">
+                <h1>Ask a neighbor for a hand.</h1>
+                <p class="lede">Make a wish anywhere you go. Someone nearby can help. Help others and meet people along the way.</p>
+                <div class="cta-row">
+                    <span class="pill">Coming soon to the App Store</span>
+                    <span class="tag">iPhone</span>
+                </div>
+                <p class="cta-note">Free. No ads, and no money between neighbors.</p>
+            </div>
+            <div class="hero-shot">
+                <img class="phone" src="screenshots/01-home.png" alt="Home: five wishes nearby, nearest first. A rising question about the farmers market, Ada asking to borrow a ladder for 30 minutes with coffee in return, and Bob needing a USB-C charger, each with a button that drains as its time runs out.">
+            </div>
+        </header>
+
+        <section aria-labelledby="why-heading">
+            <p id="why-heading" class="section-title">Why jyn</p>
+            <ul class="why-list">
+                <li><strong>Small asks, right now.</strong><span>A ladder for half an hour, a hand with a couch, a quick answer. Things a neighbor could do on the way past.</span></li>
+                <li><strong>Everything is local.</strong><span>Wishes show nearest first and never from further than 50 miles away. Most reach the 5 miles around you.</span></li>
+                <li><strong>A list that ends.</strong><span>Home is a short deck, not a feed. When you've seen what's nearby it says "You're all caught up."</span></li>
+                <li><strong>No money, ever.</strong><span>The give-back is a thank-you: "coffee", "pizza on me". Prices are taken out, and there's nothing to pay.</span></li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="how-heading">
+            <p id="how-heading" class="section-title">How it works</p>
+            <div class="steps">
+                <div class="step">
+                    <img class="phone step-shot" src="screenshots/05-make-a-wish.png" alt="Make a wish: choose a wish or a Join me, pick Favor, Goods or Question, write what you need, add an optional give-back, mark it urgent, and choose how long it stays up.">
+                    <div>
+                        <span class="step-number">1</span>
+                        <h3>Make a wish</h3>
+                        <p>Say what you need: a favor, something to borrow, or a question. Add a thank-you if you like and choose how long it stays up, from 30 minutes to a day.</p>
+                        <p>It runs out on its own. If nobody takes it on, repost it and it reaches a little further.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <img class="phone step-shot" src="screenshots/03-offer.png" alt="Offer to help: the wish 'Borrow a ladder for 30 mins' from Ada, 0.3 miles away, with quick replies 'I can help now' and 'I can be there in 15 min' and a note field.">
+                    <div>
+                        <span class="step-number">2</span>
+                        <h3>A neighbor offers</h3>
+                        <p>People nearby see your wish and offer to help with a tap and a short note. Only you see who offered, and you pick who helps.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <img class="phone step-shot" src="screenshots/07-chat.png" alt="A chat about the ladder: 'I can be there in 15 min', 'Perfect, I'm at the blue door on Hayes', a shared location on a map, and 'On my way'.">
+                    <div>
+                        <span class="step-number">3</span>
+                        <h3>Sort it out in chat</h3>
+                        <p>Picking someone opens a chat with them. Share where exactly to meet only there: everyone else only ever sees your wish's spot to about 100 metres.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <img class="phone step-shot" src="screenshots/09-me.png" alt="Me: Linh's profile with a 'Granted 12' badge, trust score, member since, and the kudos people left: Reliable, Kind, Good Neighbor.">
+                    <div>
+                        <span class="step-number">4</span>
+                        <h3>Say thanks</h3>
+                        <p>You say when it's done. Then thank each other with kudos and a note that stays on your profiles, and a badge that grows with every wish you grant.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="joinme-heading">
+            <div class="panel mint">
+                <div>
+                    <p id="joinme-heading" class="section-title">Join me</p>
+                    <h2>Pickleball at 2, need 3 more.</h2>
+                    <p class="section-lede">Start a run, a game night or a meal and let people nearby come along.</p>
+                    <ul>
+                        <li>Set the spots, the time and what to bring.</li>
+                        <li>You see who asked to join and choose who's going.</li>
+                        <li>Message everyone who's coming in one chat.</li>
+                    </ul>
+                </div>
+                <img class="phone" src="screenshots/04-join-me.png" alt="Home showing a Join me: 'Pickleball at 2pm, need 3 more' at Alamo Square courts, 1 of 3 going, 2 spots left, with a Join button.">
+            </div>
+        </section>
+
+        <section aria-labelledby="safety-heading">
+            <div class="panel rose">
+                <div>
+                    <p id="safety-heading" class="section-title">Safety</p>
+                    <h2>Meet in public. Your spot stays yours.</h2>
+                    <p class="section-lede">jyn is about people you don't know yet, so the safe choice is the default.</p>
+                    <ul>
+                        <li>Others see your wish's spot to about 100 metres; the exact place is only for the person you pick.</li>
+                        <li>Meeting in a public place is the default. Asking someone over is clearly marked as a home visit.</li>
+                        <li>You can only add someone as a friend once you've met: a wish or Join me together, or scanning each other's code in person.</li>
+                        <li>Every chat has a safety kit: call 911, report, block, or leave. Reports are confidential.</li>
+                    </ul>
+                </div>
+                <img class="phone" src="screenshots/08-safety.png" alt="The Safety kit in a chat: a red Call 911 button, Share my trip (coming soon), Report Ada L., Block Ada L., and Leave conversation.">
+            </div>
+        </section>
+
+        <section aria-labelledby="gallery-heading">
+            <p id="gallery-heading" class="section-title">A look inside</p>
+            <div class="gallery">
+                <figure><img class="phone" loading="lazy" src="screenshots/01-home.png" alt="Home: wishes nearby, nearest first."><figcaption>Wishes nearby</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/02-wish-detail.png" alt="A wish: Ada's ladder, with the give-back, meet in a public place, one offer, and a map of the area."><figcaption>A wish</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/03-offer.png" alt="Offering to help with a quick reply."><figcaption>Offer to help</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/04-join-me.png" alt="A Join me for pickleball on the deck."><figcaption>Join me</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/05-make-a-wish.png" alt="Make a wish."><figcaption>Make a wish</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/06-chats.png" alt="Chats: the ladder chat with an unread message and a chat with a friend."><figcaption>Chats</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/07-chat.png" alt="A chat with a shared location."><figcaption>A chat</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/08-safety.png" alt="The safety kit."><figcaption>Safety kit</figcaption></figure>
+                <figure><img class="phone" loading="lazy" src="screenshots/09-me.png" alt="Me: profile and kudos."><figcaption>Your profile</figcaption></figure>
+            </div>
+        </section>
+
+        <footer>
+            <span>&copy; 2026 Juan Carlos Medina</span>
+            <span><a href="support">support</a> · <a href="privacy">privacy</a></span>
+        </footer>
+    </div>
+</body>
+</html>
